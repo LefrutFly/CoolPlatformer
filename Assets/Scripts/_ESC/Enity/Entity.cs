@@ -75,7 +75,7 @@ public abstract class Entity : MonoBehaviour
 
     private void OnDisable()
     {
-        foreach(var system in disables)
+        foreach (var system in disables)
         {
             system.Disable();
         }

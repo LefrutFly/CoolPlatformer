@@ -7,7 +7,7 @@ public class AttackReachSystem : BaseSystem, IUpdatableSystem
     {
         if (Providers.Has<AttackProvider>() == false ||
             Providers.Has<EntityProvider>() == false ||
-            Providers.Has<PossibleToAttackProvider>() == false)
+            Providers.Has<AttackReachProvider>() == false)
             return;
 
         var playerAttackComponent = Providers.Get<AttackProvider>().component;
@@ -16,7 +16,7 @@ public class AttackReachSystem : BaseSystem, IUpdatableSystem
 
         var thisEntity = Providers.Get<EntityProvider>().component.entity;
 
-        Providers.Get<PossibleToAttackProvider>().component.IsIt = IsInWithinReach(collider, thisEntity);
+        Providers.Get<AttackReachProvider>().component.IsIt = IsInWithinReach(collider, thisEntity);
     }
 
     private bool IsInWithinReach(Collider2D collider, Entity thisEntity)
@@ -32,7 +32,7 @@ public class AttackReachSystem : BaseSystem, IUpdatableSystem
         {
             if (c.gameObject.TryGetComponent(out Entity entity) && c.gameObject != thisEntity.gameObject)
             {
-                if(entity.Providers.Has<HealthProvider>() == true)
+                if (entity.Providers.Has<HealthProvider>() == true)
                 {
                     return true;
                 }

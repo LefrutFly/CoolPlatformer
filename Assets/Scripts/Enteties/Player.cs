@@ -7,7 +7,9 @@ public class Player : Entity
         AddSystem(new PlayerJumpSystem());
         AddSystem(new PlayerAttackSystem());
         AddSystem(new PlayerGunSystem());
-        
+        AddSystem(new HighlightDamageSystem());
+
+        AddSystem(new AnimaionDeathSystem());
         AddSystem(new DisableDeathSystem());
     }
 }

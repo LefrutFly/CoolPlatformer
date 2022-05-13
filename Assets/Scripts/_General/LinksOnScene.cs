@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LinksOnScene : MonoBehaviour
 {
@@ -13,5 +14,13 @@ public class LinksOnScene : MonoBehaviour
     private void OnDisable()
     {
         GameLinks.DeleteAll();
+    }
+
+    private void LateUpdate()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
     }
 }

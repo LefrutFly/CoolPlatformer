@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackSystem : BaseSystem, IUpdatableSystem
+public class AttackSystem<AlliesType> : BaseSystem, IUpdatableSystem 
+    where AlliesType : Entity
 {
     private Coroutine attack;
 
@@ -33,9 +34,9 @@ public class AttackSystem : BaseSystem, IUpdatableSystem
 
         bool isPossibleToAttack;
 
-        if (Providers.Has<PossibleToAttackProvider>() == false) 
+        if (Providers.Has<PossibleToAttackProvider>() == false)
             isPossibleToAttack = true;
-        else 
+        else
             isPossibleToAttack = Providers.Get<PossibleToAttackProvider>().component.IsIt;
 
 
@@ -77,7 +78,10 @@ public class AttackSystem : BaseSystem, IUpdatableSystem
                 {
                     var healthComponent = healthProvider.component;
 
-                    healthComponent.TakeDamage(damage);
+                    if(entity.gameObject.GetComponent<AlliesType>() == null)
+                    {
+                        healthComponent.TakeDamage(damage);
+                    }
                 }
             }
         }

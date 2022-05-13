@@ -1,4 +1,4 @@
 ﻿public class PossibleToAttackProvider : MonoProvider
 {
-    public PossibleToAttackComponent component;
+    public PossibleToAttackComponent component = new PossibleToAttackComponent();
 }
