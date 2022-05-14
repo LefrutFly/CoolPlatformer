@@ -7,7 +7,7 @@
         Providers.Get<HealthProvider>().component.ZeroHealth += Die;
     }
 
-    private void Die()
+    public void Die()
     {
         if (Providers.Has<HealthProvider>() == false ||
             Providers.Has<AnimationDeathProvider>() == false)

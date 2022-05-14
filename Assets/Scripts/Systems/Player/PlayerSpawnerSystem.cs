@@ -48,6 +48,8 @@ public class PlayerSpawnerSystem : BaseSystem, IStartableSystem, IUpdatableSyste
 
             var spawnPoint = playerSpawnerProvider.spawnPoint;
 
+            StartDeathAnimation();
+
             SetPlayerPosition(player.gameObject, spawnPoint);
 
             DisablePlayer();
@@ -77,6 +79,16 @@ public class PlayerSpawnerSystem : BaseSystem, IStartableSystem, IUpdatableSyste
         EnablePlayer();
 
         spawnPlayer = null;
+    }
+
+    private void StartDeathAnimation()
+    {
+        var player = Providers.Get<PlayerSpawnerProvider>().component.player;
+
+        if(player.GetComponent<Player>().Systems.TryGet(out AnimaionDeathSystem animaionDeath))
+        {
+            animaionDeath.Die();
+        }
     }
 
     private void EnablePlayer()

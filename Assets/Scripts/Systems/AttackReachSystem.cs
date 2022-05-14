@@ -32,12 +32,9 @@ public class AttackReachSystem<AlliesType> : BaseSystem, IUpdatableSystem
         {
             if (c.gameObject.TryGetComponent(out Entity entity) && c.gameObject != thisEntity.gameObject)
             {
-                if (entity.Providers.Has<HealthProvider>() == true)
+                if (entity.Providers.Has<HealthProvider>() == true && entity.gameObject.GetComponent<AlliesType>() == null)
                 {
-                    if (entity.gameObject.GetComponent<AlliesType>() == null)
-                    {
-                        return true;
-                    }
+                    return true;
                 }
             }
         }
