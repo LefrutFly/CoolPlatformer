@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackReachSystem : BaseSystem, IUpdatableSystem
+public class AttackReachSystem<AlliesType> : BaseSystem, IUpdatableSystem
 {
     public void Update()
     {
@@ -34,7 +34,10 @@ public class AttackReachSystem : BaseSystem, IUpdatableSystem
             {
                 if (entity.Providers.Has<HealthProvider>() == true)
                 {
-                    return true;
+                    if (entity.gameObject.GetComponent<AlliesType>() == null)
+                    {
+                        return true;
+                    }
                 }
             }
         }

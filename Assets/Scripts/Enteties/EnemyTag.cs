@@ -1,0 +1,1 @@
+﻿public class EnemyTag : Enemy { protected override void Initialize() { } }

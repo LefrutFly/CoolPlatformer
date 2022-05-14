@@ -21,6 +21,15 @@ public abstract class Entity : MonoBehaviour
 
     public event Action DisableEvent;
 
+    private void Awake()
+    {
+        foreach (var component in providersList)
+        {
+            providers.Set(component);
+        }
+
+        Initialize();
+    }
 
     private void OnEnable()
     {
@@ -28,15 +37,6 @@ public abstract class Entity : MonoBehaviour
         {
             system.Enable();
         }
-    }
-    private void Awake()
-    {
-        foreach(var component in providersList)
-        {
-            providers.Set(component);       
-        }
-
-        Initialize();
     }
 
     private void Start()
@@ -93,7 +93,7 @@ public abstract class Entity : MonoBehaviour
     {
         if(system == null) return;
 
-        system.Initialize(providers);
+        system.Initialize(providers, this);
         systems.Set(system);
 
         if(system is IEnableSystem)

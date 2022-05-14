@@ -10,12 +10,13 @@ public class NipperPossibleToAttackSystem : BaseSystem, IUpdatableSystem, IStart
 
     public void Start()
     {
-        if (Providers.Has<EntityProvider>() == false)
+        if (Providers.Has<EntityProvider>() == false ||
+            Providers.Has<AttackReachProvider>() == false ||
+            Providers.Has<PossibleToAttackProvider>() == false)
             return;
 
         var nipper = Providers.Get<EntityProvider>().component.entity as Nipper;
 
-        AddProviders(nipper);
         AddSystems(nipper);
 
         possibleToAttack = Providers.Get<PossibleToAttackProvider>().component;
@@ -26,7 +27,9 @@ public class NipperPossibleToAttackSystem : BaseSystem, IUpdatableSystem, IStart
 
     public void Update()
     {
-        if (Providers.Has<EntityProvider>() == false)
+        if (Providers.Has<EntityProvider>() == false ||
+            Providers.Has<AttackReachProvider>() == false ||
+            Providers.Has<PossibleToAttackProvider>() == false)
             return;
 
         thisEntity = Providers.Get<EntityProvider>().component.entity;
@@ -37,23 +40,11 @@ public class NipperPossibleToAttackSystem : BaseSystem, IUpdatableSystem, IStart
         possibleToAttack.IsIt = isAttackReach && (!isAnotherEnemy || isPlayer);
     }
 
-    private void AddProviders(Nipper nipper)
-    {
-        if (Providers.Has<AttackReachProvider>() == false)
-        {
-            nipper.Providers.Set(new AttackReachProvider());
-        }
-        if (Providers.Has<PossibleToAttackProvider>() == false)
-        {
-            nipper.Providers.Set(new PossibleToAttackProvider());
-        }
-    }
-
     private void AddSystems(Nipper nipper)
     {
-        if (nipper.Systems.Has<AttackReachSystem>() == false)
+        if (nipper.Systems.Has<AttackReachSystem<Enemy>>() == false)
         {
-            nipper.AddSystem(new AttackReachSystem());
+            nipper.AddSystem(new AttackReachSystem<Enemy>());
         }
     }
 }
