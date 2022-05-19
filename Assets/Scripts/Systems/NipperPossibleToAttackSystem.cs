@@ -34,7 +34,7 @@ public class NipperPossibleToAttackSystem : BaseSystem, IUpdatableSystem, IStart
 
         thisEntity = Providers.Get<EntityProvider>().component.entity;
         var isAttackReach = Providers.Get<AttackReachProvider>().component.IsIt;
-        var isAnotherEnemy = colliderDeterminant.IsItT<Enemy>(collider, thisEntity);
+        var isAnotherEnemy = colliderDeterminant.IsItT<EnemyTag>(collider, thisEntity);
         var isPlayer = colliderDeterminant.IsItT<Player>(collider, thisEntity);
 
         possibleToAttack.IsIt = isAttackReach && (!isAnotherEnemy || isPlayer);
@@ -42,9 +42,9 @@ public class NipperPossibleToAttackSystem : BaseSystem, IUpdatableSystem, IStart
 
     private void AddSystems(Nipper nipper)
     {
-        if (nipper.Systems.Has<AttackReachSystem<Enemy>>() == false)
+        if (nipper.Systems.Has<AttackReachSystem<EnemyTag>>() == false)
         {
-            nipper.AddSystem(new AttackReachSystem<Enemy>());
+            nipper.AddSystem(new AttackReachSystem<EnemyTag>());
         }
     }
 }

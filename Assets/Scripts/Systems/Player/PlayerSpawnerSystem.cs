@@ -4,6 +4,7 @@ using UnityEngine;
 public class PlayerSpawnerSystem : BaseSystem, IStartableSystem, IUpdatableSystem
 {
     private Coroutine spawnPlayer;
+    private PlayerSpawnerComponent playerSpawnerComponent;
 
     public void Start()
     {
@@ -12,13 +13,13 @@ public class PlayerSpawnerSystem : BaseSystem, IStartableSystem, IUpdatableSyste
         if (Providers.Has<PlayerSpawnerProvider>() == false)
             return;
 
-        var playerSpawnerProvider = Providers.Get<PlayerSpawnerProvider>().component;
+        playerSpawnerComponent = Providers.Get<PlayerSpawnerProvider>().component;
 
-        if (playerSpawnerProvider.player == null)
-            playerSpawnerProvider.player = GameLinks.GetLink<Player>() as Player;
+        if (playerSpawnerComponent.player == null)
+            playerSpawnerComponent.player = GameLinks.GetLink<Player>() as Player;
 
-        var animator = playerSpawnerProvider.animator;
-        var animatorTrigger = playerSpawnerProvider.animatorTrigger;
+        var animator = playerSpawnerComponent.animator;
+        var animatorTrigger = playerSpawnerComponent.animatorTrigger;
 
         DisablePlayer();
         PlayAnimator(animator, animatorTrigger);
@@ -83,11 +84,26 @@ public class PlayerSpawnerSystem : BaseSystem, IStartableSystem, IUpdatableSyste
 
     private void StartDeathAnimation()
     {
-        var player = Providers.Get<PlayerSpawnerProvider>().component.player;
-
-        if(player.GetComponent<Player>().Systems.TryGet(out AnimaionDeathSystem animaionDeath))
+        if (playerSpawnerComponent.player.Providers.Has<EntityIsDieProvider>() == true)
         {
-            animaionDeath.Die();
+            if (playerSpawnerComponent.player.Providers.Get<EntityIsDieProvider>().component.IsIt == false)
+            {
+                var player = Providers.Get<PlayerSpawnerProvider>().component.player;
+
+                if (player.GetComponent<Player>().Systems.TryGet(out AnimaionDeathSystem animaionDeath))
+                {
+                    animaionDeath.Die();
+                }
+            }
+        }
+        else
+        {
+            var player = Providers.Get<PlayerSpawnerProvider>().component.player;
+
+            if (player.GetComponent<Player>().Systems.TryGet(out AnimaionDeathSystem animaionDeath))
+            {
+                animaionDeath.Die();
+            }
         }
     }
 
@@ -98,6 +114,12 @@ public class PlayerSpawnerSystem : BaseSystem, IStartableSystem, IUpdatableSyste
         player.gameObject.SetActive(true);
 
         EnableControlPlayer(player, true);
+
+
+        if (playerSpawnerComponent.player.Providers.Has<EntityIsDieProvider>() == true)
+        {
+            playerSpawnerComponent.player.Providers.Get<EntityIsDieProvider>().component.IsIt = false;
+        }
     }
 
     private void DisablePlayer()

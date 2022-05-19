@@ -18,10 +18,14 @@
         var prefab = animationDeathComponent.prefab;
         var spawnPoint = animationDeathComponent.spawnPoint;
         var timerBeforeDelete = animationDeathComponent.timerBeforeDelete;
-        bool isDeleted = animationDeathComponent.isDeleted;
 
         DeletableObjectCreator deletableObjectCreator = new DeletableObjectCreator(prefab, timerBeforeDelete, spawnPoint);
 
         deletableObjectCreator.Create();
+
+        if (Providers.Has<EntityIsDieProvider>() == true)
+        {
+            Providers.Get<EntityIsDieProvider>().component.IsIt = true;
+        }
     }
 }

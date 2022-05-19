@@ -3,6 +3,8 @@ using DG.Tweening;
 
 public class HighlightDamageSystem : BaseSystem, IEnableSystem, IDisableSystem
 {
+    private bool isHighlightNow = false;
+
     public void Enable()
     {
         if (Providers.Has<HealthProvider>() == false) return;
@@ -30,7 +32,11 @@ public class HighlightDamageSystem : BaseSystem, IEnableSystem, IDisableSystem
 
         Color defaultColor = sprite.color;
 
-        Bleach(sprite, defaultColor);
+        if (isHighlightNow == false)
+        {
+            isHighlightNow = true;
+            Bleach(sprite, defaultColor);
+        }
     }
 
     private void Bleach(SpriteRenderer sprite, Color defaultColor)
@@ -42,6 +48,9 @@ public class HighlightDamageSystem : BaseSystem, IEnableSystem, IDisableSystem
 
     private void ReturnBack(SpriteRenderer sprite, Color defaultColor)
     {
-        sprite.DOColor(defaultColor, 0.05f);
+        sprite.DOColor(defaultColor, 0.05f).OnComplete(() =>
+        {
+            isHighlightNow = false;
+        });
     }
 }

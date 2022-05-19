@@ -1,4 +1,4 @@
-public class Spike : Entity
+public class Spike : TrapTag
 {
     protected override void Initialize()
     {

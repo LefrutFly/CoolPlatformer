@@ -17,8 +17,13 @@ public class DisableDeathSystem : BaseSystem, IStartableSystem, IDisableSystem
     }
 
     protected void Die()
-    {
+    {      
         var entity = Providers.Get<EntityProvider>().component.entity;
         entity.gameObject.SetActive(false);
+
+        if (Providers.Has<EntityIsDieProvider>() == true)
+        {
+            Providers.Get<EntityIsDieProvider>().component.IsIt = true;
+        }
     }
 }

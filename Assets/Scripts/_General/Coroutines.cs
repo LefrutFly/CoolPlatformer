@@ -23,8 +23,8 @@ public sealed class Coroutines : MonoBehaviour
         return instance.StartCoroutine(enumerator);
     }
 
-    public static void Stop(Coroutine routine)
+    public static void Stop(Coroutine coroutine)
     {
-        instance.StopCoroutine(routine);
+        instance.StopCoroutine(coroutine);
     }
 }

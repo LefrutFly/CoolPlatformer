@@ -22,5 +22,9 @@ public class LinksOnScene : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
+        if (Input.GetKeyDown(KeyCode.End))
+        {
+            Application.Quit();
+        }
     }
 }

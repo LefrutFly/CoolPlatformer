@@ -24,7 +24,7 @@ public class PeriodicTriggerDamageSystem : BaseSystem, ITriggableSystem
     {
         if (Providers.Has<PeriodicTriggerDamageProvider>() == false) return;
 
-        if(collision.TryGetComponent(out Entity entity))
+        if (collision.TryGetComponent(out Entity entity))
         {
             if (damage != null)
             {
@@ -41,13 +41,23 @@ public class PeriodicTriggerDamageSystem : BaseSystem, ITriggableSystem
         var damage = component.damage;
         var cooldown = component.cooldown;
 
-        if(entity.Providers.Has<HealthProvider>() == false) yield break;
+        if (entity.Providers.Has<HealthProvider>() == false) yield break;
 
         while (true)
         {
             entity.Providers.Get<HealthProvider>().component.TakeDamage(damage);
 
             yield return new WaitForSeconds(cooldown);
+
+            if (entity.gameObject.activeSelf == false)
+            {
+                break;
+            }
+        }
+        if (this.damage != null)
+        {
+            Coroutines.Stop(this.damage);
+            this.damage = null;
         }
     }
 }

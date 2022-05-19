@@ -1,1 +1,1 @@
-﻿public class EnemyTag : Enemy { protected override void Initialize() { } }
+﻿public class EnemyTag : Entity { protected override void Initialize() { } }
