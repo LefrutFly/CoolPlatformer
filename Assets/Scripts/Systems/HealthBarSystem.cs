@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-public class HealthBarSystem : BaseSystem, IStartableSystem, IDisableSystem
+﻿public class HealthBarSystem : BaseSystem, IStartableSystem, IDisableSystem
 {
     public void Start()
     {
