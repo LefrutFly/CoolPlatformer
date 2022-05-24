@@ -223,7 +223,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   component:
-    entity: {fileID: 7980193292895326722}
+    entity: {fileID: 5452556520251138784}
 --- !u!114 &7980193292237097727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -548,7 +548,7 @@ GameObject:
   - component: {fileID: 7980193292895326733}
   - component: {fileID: 7980193292895326732}
   - component: {fileID: 7980193292895326723}
-  - component: {fileID: 7980193292895326722}
+  - component: {fileID: 5452556520251138784}
   - component: {fileID: 7980193292895326728}
   - component: {fileID: 7980193292895326735}
   - component: {fileID: 7980193292895326734}
@@ -619,7 +619,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &7980193292895326722
+--- !u!114 &5452556520251138784
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -628,7 +628,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7980193292895326721}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c6ff7470d0fae046a71246a8fc65590, type: 3}
+  m_Script: {fileID: 11500000, guid: e5c03a94c34831d49932b8075817b006, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   providersList:
@@ -654,7 +654,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   component:
-    entity: {fileID: 7980193292895326722}
+    entity: {fileID: 5452556520251138784}
 --- !u!114 &7980193292895326735
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -701,10 +701,12 @@ MonoBehaviour:
     rightPoint: {fileID: 7980193291740596441}
     upPoint: {fileID: 7980193292947030298}
     downPoint: {fileID: 7980193291940951686}
+    internalPoint: {fileID: 0}
     sizeColliderLeft: {x: 0.01, y: 3.5}
     sizeColliderRight: {x: 0.01, y: 3.5}
     sizeColliderUp: {x: 0.01, y: 0.01}
     sizeColliderDown: {x: 0.01, y: 0.01}
+    sizeColliderInternal: {x: 0, y: 0}
     layer:
       serializedVersion: 2
       m_Bits: 64
@@ -713,6 +715,7 @@ MonoBehaviour:
     isRightCollide: 0
     isTopCollide: 0
     isBottomCollide: 0
+    isInternalCollide: 0
 --- !u!114 &7980193292895326730
 MonoBehaviour:
   m_ObjectHideFlags: 0
