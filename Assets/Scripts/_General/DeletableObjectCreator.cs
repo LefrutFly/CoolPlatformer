@@ -18,6 +18,7 @@ public class DeletableObjectCreator
     public void Create()
     {
         GameObject deathObject = GameObject.Instantiate(prefab, spawnPoint.position, Quaternion.identity);
+        deathObject.transform.rotation = spawnPoint.rotation;
 
         if (delete != null) return;
 

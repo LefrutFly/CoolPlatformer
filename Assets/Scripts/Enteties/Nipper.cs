@@ -8,6 +8,7 @@
         AddSystem(new AttackSystem<EnemyTag>());
         AddSystem(new HighlightDamageSystem());
 
+        AddSystem(new AnimaionDeathSystem());
         AddSystem(new DestroyDeathSystem());
     }
 }

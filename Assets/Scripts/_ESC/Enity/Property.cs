@@ -32,6 +32,20 @@ public class Property<Y>
         }
     }
 
+    public bool Has<T>(T newProperty) where T : Y
+    {
+        var type = newProperty.GetType();
+
+        if (properties.ContainsKey(type))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     public T Get<T>() where T : Y, new()
     {
         if (properties.ContainsKey(typeof(T)))
@@ -62,6 +76,20 @@ public class Property<Y>
     public void Delete<T>()
     {
         if (properties.ContainsKey(typeof(T)))
+        {
+            properties.Remove(typeof(T));
+        }
+        else
+        {
+            Debug.LogError($"Could not find object by key {typeof(T)}!");
+        }
+    }
+
+    public void Delete<T>(T property)
+    {
+        var type = property.GetType();
+
+        if (properties.ContainsKey(type))
         {
             properties.Remove(typeof(T));
         }

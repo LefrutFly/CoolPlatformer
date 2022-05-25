@@ -116,7 +116,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   component:
     damage: 80
-    delayBeforeAttack: 0.25
+    delayBeforeAttack: 0.2
     delayAfterAttack: 0.75
     animator: {fileID: 9024339330379757384}
     animationTrigger: Attack

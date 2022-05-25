@@ -11,7 +11,8 @@ public class ShiftAbilitySystem : BaseSystem, IUpdatableSystem
     {
         if (Providers.Has<ShiftAbilityProvider>() == false ||
             Providers.Has<EntityProvider>() == false ||
-            Providers.Has<PlayerMoveProvider>() == false)
+            Providers.Has<PlayerMoveProvider>() == false ||
+            IsActive == false)
             return;
 
         var shiftAbilityComponent = Providers.Get<ShiftAbilityProvider>().component;
@@ -91,7 +92,7 @@ public class ShiftAbilitySystem : BaseSystem, IUpdatableSystem
     {
         if (isReady)
         {
-            entity.transform.DOMove(nextPoint, duration);
+            entity.transform.DOMoveX(nextPoint.x, duration);
             mana.TakeMana(manaCost);
 
             if (cooldownCoroutine == null)

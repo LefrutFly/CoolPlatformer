@@ -19,6 +19,11 @@
         var spawnPoint = animationDeathComponent.spawnPoint;
         var timerBeforeDelete = animationDeathComponent.timerBeforeDelete;
 
+        if(Providers.TryGet(out ViewProvider viewProvider) == true)
+        {
+            spawnPoint.rotation = viewProvider.component.view.transform.rotation;
+        }
+
         DeletableObjectCreator deletableObjectCreator = new DeletableObjectCreator(prefab, timerBeforeDelete, spawnPoint);
 
         deletableObjectCreator.Create();

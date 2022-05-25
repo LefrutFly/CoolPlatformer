@@ -185,5 +185,9 @@ public class PlayerSpawnerSystem : BaseSystem, IStartableSystem, IUpdatableSyste
         {
             gunSystem.IsActive = enable;
         }
+        if(player.Systems.TryGet(out ShiftAbilitySystem shiftAbility))
+        {
+            shiftAbility.IsActive = enable;
+        }
     }
 }

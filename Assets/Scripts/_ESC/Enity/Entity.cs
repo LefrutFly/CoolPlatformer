@@ -41,7 +41,7 @@ public abstract class Entity : MonoBehaviour
 
     private void Start()
     {
-        foreach(var system in startables)
+        foreach (var system in startables)
         {
             system.Start();
         }
@@ -51,7 +51,7 @@ public abstract class Entity : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        foreach(var system in triggables)
+        foreach (var system in triggables)
         {
             system.TriggetEnter(collision);
         }
@@ -91,12 +91,18 @@ public abstract class Entity : MonoBehaviour
 
     public void AddSystem(BaseSystem system)
     {
-        if(system == null) return;
+        if (system == null) return;
 
         system.Initialize(providers, this);
+
+        if (systems.Has(system))
+        {
+            systems.Delete(system);
+        }
+
         systems.Set(system);
 
-        if(system is IEnableSystem)
+        if (system is IEnableSystem)
         {
             enables.Add(system as IEnableSystem);
         }
@@ -104,11 +110,11 @@ public abstract class Entity : MonoBehaviour
         {
             startables.Add(system as IStartableSystem);
         }
-        if(system is IUpdatableSystem)
+        if (system is IUpdatableSystem)
         {
             updatables.Add(system as IUpdatableSystem);
         }
-        if(system is IFixedUpdatableSystem)
+        if (system is IFixedUpdatableSystem)
         {
             fixedUpdatables.Add(system as IFixedUpdatableSystem);
         }
@@ -116,9 +122,13 @@ public abstract class Entity : MonoBehaviour
         {
             triggables.Add(system as ITriggableSystem);
         }
-        if(system is IDisableSystem)
+        if (system is IDisableSystem)
         {
             disables.Add(system as IDisableSystem);
+        }
+        if (system is IRunOnAddSystem)
+        {
+            (system as IRunOnAddSystem).RunOnAdd();
         }
     }
 
@@ -128,7 +138,7 @@ public abstract class Entity : MonoBehaviour
 
         T del = new T();
 
-        if(del is IEnableSystem)
+        if (del is IEnableSystem)
         {
             foreach (var system in enables)
             {
@@ -141,9 +151,9 @@ public abstract class Entity : MonoBehaviour
         }
         if (del is IStartableSystem)
         {
-            foreach(var system in startables)
+            foreach (var system in startables)
             {
-                if(system is T)
+                if (system is T)
                 {
                     startables.Remove(system);
                     return;
