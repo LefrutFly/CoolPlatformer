@@ -426,7 +426,9 @@ MonoBehaviour:
     [ TAB ] - Summon Hammer
 
     [
-    E ] - Attack With a Hammer'
+    E ] - Attack With a Hammer
+
+    [ R ] - Reincarnation'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ad61cae842fefac44b5c735605312306, type: 2}
   m_sharedMaterial: {fileID: 8123157228947208154, guid: ad61cae842fefac44b5c735605312306, type: 2}
@@ -453,7 +455,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40.45
+  m_fontSize: 34.5
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

@@ -11,7 +11,7 @@ public class Player : Entity
         AddSystem(new HighlightDamageSystem());
         AddSystem(new StuckInGroundSystem());
 
-        AddSystem(new AnimaionDeathSystem());
+        AddSystem(new AnimationDeathSystem());
         AddSystem(new DisableDeathSystem());
     }
 }

@@ -1,4 +1,4 @@
-﻿public class AnimaionDeathSystem : BaseSystem, IStartableSystem
+﻿public class AnimationDeathSystem : BaseSystem, IStartableSystem
 {
     public void Start()
     {

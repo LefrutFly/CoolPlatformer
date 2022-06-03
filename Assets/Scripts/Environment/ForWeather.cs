@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class ForWether : Weather
+public class ForWeather : Weather
 {
     [SerializeField] private GameObject fogObject;
     [SerializeField] private Animator[] animators;

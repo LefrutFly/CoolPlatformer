@@ -90,7 +90,7 @@ public class PlayerSpawnerSystem : BaseSystem, IStartableSystem, IUpdatableSyste
             {
                 var player = Providers.Get<PlayerSpawnerProvider>().component.player;
 
-                if (player.GetComponent<Player>().Systems.TryGet(out AnimaionDeathSystem animaionDeath))
+                if (player.GetComponent<Player>().Systems.TryGet(out AnimationDeathSystem animaionDeath))
                 {
                     animaionDeath.Die();
                 }
@@ -100,7 +100,7 @@ public class PlayerSpawnerSystem : BaseSystem, IStartableSystem, IUpdatableSyste
         {
             var player = Providers.Get<PlayerSpawnerProvider>().component.player;
 
-            if (player.GetComponent<Player>().Systems.TryGet(out AnimaionDeathSystem animaionDeath))
+            if (player.GetComponent<Player>().Systems.TryGet(out AnimationDeathSystem animaionDeath))
             {
                 animaionDeath.Die();
             }

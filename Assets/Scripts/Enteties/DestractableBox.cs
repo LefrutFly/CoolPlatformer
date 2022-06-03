@@ -6,7 +6,7 @@ public class DestractableBox : Entity
 {
     protected override void Initialize()
     {
-        AddSystem(new AnimaionDeathSystem());
+        AddSystem(new AnimationDeathSystem());
         AddSystem(new DisableDeathSystem());
     }
 }

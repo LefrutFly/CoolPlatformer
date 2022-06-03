@@ -6,13 +6,13 @@ public class Property<Y>
 {
     private Dictionary<Type, Y> properties = new Dictionary<Type, Y>();
 
-    public void Set<T>(T newProperty) where T : Y
+    public void Set<T>(T property) where T : Y
     {
-        var type = newProperty.GetType();
+        var type = property.GetType();
 
-        if (properties.ContainsKey(type) == false)
+        if (Has(property) == false)
         {
-            properties[type] = newProperty;
+            properties[type] = property;
         }
         else
         {
@@ -32,9 +32,9 @@ public class Property<Y>
         }
     }
 
-    public bool Has<T>(T newProperty) where T : Y
+    public bool Has<T>(T property) where T : Y
     {
-        var type = newProperty.GetType();
+        var type = property.GetType();
 
         if (properties.ContainsKey(type))
         {

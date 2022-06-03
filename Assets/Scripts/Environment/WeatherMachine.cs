@@ -6,8 +6,8 @@ public class WeatherMachine : MonoBehaviour
     [SerializeField] private float weatherChangeTimer;
     [Space]
     [SerializeField] private RainWeather rain;
-    [SerializeField] private ClearWether clear;
-    [SerializeField] private ForWether fog;
+    [SerializeField] private ClearWeather clear;
+    [SerializeField] private ForWeather fog;
 
     private Weather currentWeather;
 

@@ -1,5 +1,5 @@
 ﻿[System.Serializable]
-public class ClearWether : Weather
+public class ClearWeather : Weather
 {
     public override void StartWeather()
     {

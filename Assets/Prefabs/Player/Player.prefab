@@ -185,7 +185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   component:
-    health: 0
+    health: 100
     maxHealth: 100
 --- !u!114 &2514512872668693707
 MonoBehaviour:
