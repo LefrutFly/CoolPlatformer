@@ -4,6 +4,4 @@ using UnityEngine;
 public class PlayerMoveComponent
 {
     public float moveSpeed;
-    public KeyCode left;
-    public KeyCode right;
 }

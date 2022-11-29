@@ -12,16 +12,19 @@ public class PlayerMoveSystem : BaseSystem, IFixedUpdatableSystem
             Providers.Has<PointCheckerProvider>() == false)
             return;
 
-        Move();
+        Player player = Actor as Player;
+        PlayerInputs inputs = player.inputs;
+        Vector2 direction = inputs.Player.Move.ReadValue<Vector2>();
+
+        Move(direction);
     }
 
     private void StartMove(Vector2 direction)
     {
-         var entity =  Providers.Get<EntityProvider>().component.entity;
-         var moveSpeed =  Providers.Get<PlayerMoveProvider>().component.moveSpeed;
-
-        Rigidbody2D rigidbody = entity.GetComponent<Rigidbody2D>();
-        Vector3 velocity = rigidbody.velocity;
+        var entity = Providers.Get<EntityProvider>().component.entity;
+        var moveSpeed = Providers.Get<PlayerMoveProvider>().component.moveSpeed;
+        var rigidbody = entity.GetComponent<Rigidbody2D>();
+        var velocity = rigidbody.velocity;
 
         if (direction.x != 0)
         {
@@ -37,7 +40,7 @@ public class PlayerMoveSystem : BaseSystem, IFixedUpdatableSystem
 
     private void StopMove()
     {
-         var entity =  Providers.Get<EntityProvider>().component.entity;
+        var entity = Providers.Get<EntityProvider>().component.entity;
 
         Rigidbody2D rigidbody = entity.GetComponent<Rigidbody2D>();
         Vector3 velocity = rigidbody.velocity;
@@ -77,17 +80,14 @@ public class PlayerMoveSystem : BaseSystem, IFixedUpdatableSystem
 
     private void LookAtAngle(float angle)
     {
-        var view =  Providers.Get<ViewProvider>().component.view;
+        var view = Providers.Get<ViewProvider>().component.view;
 
         view.transform.rotation = Quaternion.Euler(new Vector3(0, angle, 0));
     }
 
-    private void Move()
+    private void Move(Vector2 direction)
     {
-         var left =  Providers.Get<PlayerMoveProvider>().component.left;
-         var right =  Providers.Get<PlayerMoveProvider>().component.right;
-
-        if (IsGroundLeft() == false && Input.GetKey(left))
+        if (IsGroundLeft() == false && direction.x < 0)
         {
             StartMove(new Vector2(-1, 0));
 
@@ -98,7 +98,7 @@ public class PlayerMoveSystem : BaseSystem, IFixedUpdatableSystem
                 Providers.Get<DirectionProvider>().component.direction = new Vector3(-1, 0, 0);
             }
         }
-        else if (IsGroundRight() == false && Input.GetKey(right))
+        else if (IsGroundRight() == false && direction.x > 0)
         {
             StartMove(new Vector2(1, 0));
 

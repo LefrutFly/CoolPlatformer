@@ -8,6 +8,5 @@ public class PlayerAttackComponent
     public float delayAfterAttack;
     public Animator animator;
     public string animationTrigger;
-    public KeyCode keyCode;
     public Collider2D collider;
 }

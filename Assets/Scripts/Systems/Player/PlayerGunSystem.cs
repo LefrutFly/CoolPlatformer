@@ -23,6 +23,10 @@ public class PlayerGunSystem : BaseSystem, IUpdatableSystem, IStartableSystem
 
         gunComponent.gun.gameObject.SetActive(false);
         isOpen = false;
+
+        PlayerInputs inputs = (Actor as Player).inputs;
+
+        inputs.Player.SummonGun.performed += context => EnableGun(gunComponent);
     }
 
     public void Update()
@@ -33,8 +37,6 @@ public class PlayerGunSystem : BaseSystem, IUpdatableSystem, IStartableSystem
 
         var gunComponent = Providers.Get<PlayerGunProvider>().component;
 
-        EnableGun(gunComponent);
-
         RotateGun(gunComponent);
 
         if (attack != null) return;
@@ -43,11 +45,13 @@ public class PlayerGunSystem : BaseSystem, IUpdatableSystem, IStartableSystem
 
     private IEnumerator Attack(PlayerGunComponent gunComponent)
     {
+        PlayerInputs inputs = (Actor as Player).inputs;
+        float isAttackButton = inputs.Player.GunAttack.ReadValue<float>();
+
         var collider = gunComponent.gun.Providers.Get<Collider2DProvider>().component.collider;
-        var keyCode = gunComponent.keyCodeGunAttack;
         var cooldown = gunComponent.cooldown;
 
-        if (Input.GetKeyDown(keyCode) && isOpen == true)
+        if (isAttackButton > 0 && isOpen == true)
         {
             if (Providers.TryGet(out ManaProvider manaProvider))
             {
@@ -88,9 +92,7 @@ public class PlayerGunSystem : BaseSystem, IUpdatableSystem, IStartableSystem
 
     private void EnableGun(PlayerGunComponent gunComponent)
     {
-        var keyCode = gunComponent.keyCodeOpenGun;
-
-        if (Input.GetKeyDown(keyCode) && isOpen == false)
+        if (isOpen == false)
         {
             gunComponent.gun.gameObject.SetActive(true);
             gunComponent.gun.gameObject.transform.position = gunComponent.gunPosition.position;
@@ -99,7 +101,7 @@ public class PlayerGunSystem : BaseSystem, IUpdatableSystem, IStartableSystem
 
             return;
         }
-        else if (Input.GetKeyDown(keyCode) && isOpen == true)
+        else if (isOpen == true)
         {
             isOpen = false;
 

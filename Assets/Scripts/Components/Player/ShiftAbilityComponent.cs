@@ -7,5 +7,4 @@ public struct ShiftAbilityComponent
     public float duration;
     public float cooldown;
     public float manaCost;
-    public KeyCode keyCode;
 }

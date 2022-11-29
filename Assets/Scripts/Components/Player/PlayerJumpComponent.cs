@@ -4,5 +4,4 @@
 public class PlayerJumpComponent
 {
     [SerializeField] public float jumpForce;
-    [SerializeField] public KeyCode jump;
 }

@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-public class PlayerJumpSystem : BaseSystem, IUpdatableSystem
+public class PlayerJumpSystem : BaseSystem, IEnableSystem, IDisableSystem
 {
-    public void Update()
+    public void Enable()
     {
         if (IsActive == false) return;
 
@@ -11,26 +11,36 @@ public class PlayerJumpSystem : BaseSystem, IUpdatableSystem
             Providers.Has<PointCheckerProvider>() == false)
             return;
 
-        Jump();
+        Player player = Actor as Player;
+
+        player.inputs.Player.Jump.performed += context => Jump();
+    }
+
+    public void Disable()
+    {
+        if (IsActive == false) return;
+
+        if (Providers.Has<EntityProvider>() == false ||
+            Providers.Has<PlayerJumpProvider>() == false ||
+            Providers.Has<PointCheckerProvider>() == false)
+            return;
+
+        Player player = Actor as Player;
+
+        player.inputs.Player.Jump.performed -= context => Jump();
     }
 
     private void Jump()
     {
         ref var jumpComponent = ref Providers.Get<PlayerJumpProvider>().component;
-
-        ref var jump = ref jumpComponent.jump;
         ref var jumpForce = ref jumpComponent.jumpForce;
-
         ref var entity = ref Providers.Get<EntityProvider>().component.entity;
 
-        if (Input.GetKeyDown(jump))
+        if (IsGround())
         {
-            if (IsGround())
+            if (entity.TryGetComponent(out Rigidbody2D rigidbody))
             {
-                if (entity.TryGetComponent(out Rigidbody2D rigidbody))
-                {
-                    rigidbody.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
-                }
+                rigidbody.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
             }
         }
     }

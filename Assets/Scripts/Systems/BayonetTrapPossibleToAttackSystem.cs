@@ -1,6 +1,6 @@
-﻿public class BayonetTrapPossibleToAttackSystem : BaseSystem, IUpdatableSystem, IStartableSystem
+﻿public class BayonetTrapPossibleToAttackSystem : BaseSystem, IEnableSystem, IUpdatableSystem
 {
-    public void Start()
+    public void Enable()
     {
         if (Providers.Has<EntityProvider>() == false) return;
 

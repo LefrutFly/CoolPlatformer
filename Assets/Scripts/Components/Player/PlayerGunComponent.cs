@@ -12,6 +12,4 @@ public class PlayerGunComponent
     public float cooldown;
     public float damage;
     public float manaCost;
-    public KeyCode keyCodeOpenGun;
-    public KeyCode keyCodeGunAttack;
 }

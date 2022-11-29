@@ -21,7 +21,6 @@ public class PlayerAttackSystem : BaseSystem, IUpdatableSystem
     {
         var playerAttackComponent = Providers.Get<PlayerAttackProvider>().component;
 
-        var keyCode = playerAttackComponent.keyCode;
         var collider = playerAttackComponent.collider;
         var animator = playerAttackComponent.animator;
         var animationTrigger = playerAttackComponent.animationTrigger;
@@ -29,7 +28,11 @@ public class PlayerAttackSystem : BaseSystem, IUpdatableSystem
         var delayAfterAttack = playerAttackComponent.delayAfterAttack;
         var damage = playerAttackComponent.damage;
 
-        if (Input.GetKeyDown(keyCode))
+        Player player = Actor as Player;
+        PlayerInputs inputs = player.inputs;
+        float meleeAtackKey = inputs.Player.MeleeAttack.ReadValue<float>();
+
+        if (meleeAtackKey > 0)
         {
             List<Collider2D> colliders = new List<Collider2D>();
 

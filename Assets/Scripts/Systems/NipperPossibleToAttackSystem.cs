@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class NipperPossibleToAttackSystem : BaseSystem, IUpdatableSystem, IStartableSystem
+public class NipperPossibleToAttackSystem : BaseSystem, IUpdatableSystem, IEnableSystem
 {
     private PossibleToAttackComponent possibleToAttack;
     private AttackComponent playerAttackComponent;
@@ -8,7 +8,7 @@ public class NipperPossibleToAttackSystem : BaseSystem, IUpdatableSystem, IStart
     private ColliderDeterminant colliderDeterminant = new ColliderDeterminant();
     private Entity thisEntity;
 
-    public void Start()
+    public void Enable()
     {
         if (Providers.Has<EntityProvider>() == false ||
             Providers.Has<AttackReachProvider>() == false ||
