@@ -1,19 +1,22 @@
-﻿using System.Collections;
+﻿using Lefrut.Framework;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackSystem<AlliesType> : BaseSystem, IUpdatableSystem 
-    where AlliesType : Entity
+public class AttackSystem<AlliesType> : BaseSystem, IUpdatableSystem where AlliesType : Facade
 {
     private Coroutine attack;
 
+
+    public override void AddProviders()
+    {
+        NeededProviders.Set(new AttackProvider(), this);
+        NeededProviders.Set(new EntityProvider(), this);
+        NeededProviders.Set(new PossibleToAttackProvider(), this);
+    }
+
     public void Update()
     {
-        if (Providers.Has<AttackProvider>() == false ||
-            Providers.Has<EntityProvider>() == false ||
-            Providers.Has<PossibleToAttackProvider>() == false)
-            return;
-
         if (attack != null) return;
 
         attack = Coroutines.Start(Attack());
@@ -61,7 +64,7 @@ public class AttackSystem<AlliesType> : BaseSystem, IUpdatableSystem
         animator.SetTrigger(animationTrigger);
     }
 
-    private void TakeDamage(Collider2D collider, Entity thisEntity, float damage)
+    private void TakeDamage(Collider2D collider, Facade thisEntity, float damage)
     {
         if (collider == null || thisEntity == null) return;
 
@@ -72,7 +75,7 @@ public class AttackSystem<AlliesType> : BaseSystem, IUpdatableSystem
 
         foreach (var c in colliders)
         {
-            if (c.gameObject.TryGetComponent(out Entity entity) && c.gameObject != thisEntity.gameObject)
+            if (c.gameObject.TryGetComponent(out Facade entity) && c.gameObject != thisEntity.gameObject)
             {
                 if (entity.Providers.TryGet(out HealthProvider healthProvider))
                 {

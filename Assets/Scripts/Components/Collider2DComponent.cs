@@ -1,7 +1,8 @@
-﻿using UnityEngine;
+﻿using Lefrut.Framework;
+using UnityEngine;
 
 [System.Serializable]
-public class Collider2DComponent
+public class Collider2DComponent : IData
 {
     public Collider2D collider;
 }

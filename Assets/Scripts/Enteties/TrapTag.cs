@@ -1,1 +1,3 @@
-﻿public abstract class TrapTag : Entity { }
+﻿using Lefrut.Framework;
+
+public abstract class TrapTag : Facade { }

@@ -1,11 +1,15 @@
-﻿public class ManaBarSystem : BaseSystem, IStartableSystem, IDisableSystem
+﻿using Lefrut.Framework;
+
+public class ManaBarSystem : BaseSystem, IStartableSystem, IDisableSystem
 {
+    public override void AddProviders()
+    {
+        NeededProviders.Set(new EntityProvider(), this);
+        NeededProviders.Set(new ManaBarProvider(), this);
+    }
+
     public void Start()
     {
-        if (Providers.Has<EntityProvider>() == false ||
-            Providers.Has<ManaBarProvider>() == false)
-            return;
-
         var entity = Providers.Get<EntityProvider>().component.entity;
 
         if (entity.Providers.TryGet(out ManaProvider manaProvider))
@@ -25,9 +29,6 @@
 
     public void Disable()
     {
-        if (Providers.Has<EntityProvider>() == false)
-            return;
-
         var manaBarComponent = Providers.Get<ManaBarProvider>().component;
         var entity = Providers.Get<EntityProvider>().component.entity;
 

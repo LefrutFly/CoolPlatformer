@@ -1,14 +1,20 @@
 ﻿using UnityEngine;
 using DG.Tweening;
+using Lefrut.Framework;
 
 public class HighlightDamageSystem : BaseSystem, IEnableSystem, IDisableSystem
 {
     private bool isHighlightNow = false;
 
+
+    public override void AddProviders()
+    {
+        NeededProviders.Set(new HealthProvider(), this);
+        NeededProviders.Set(new ViewSpriteProvider(), this);
+    }
+
     public void Enable()
     {
-        if (Providers.Has<HealthProvider>() == false) return;
-
         var healthComponent = Providers.Get<HealthProvider>().component;
 
         healthComponent.TakedDamage += Highlight;
@@ -16,8 +22,6 @@ public class HighlightDamageSystem : BaseSystem, IEnableSystem, IDisableSystem
 
     public void Disable()
     {
-        if (Providers.Has<HealthProvider>() == false) return;
-
         var healthComponent = Providers.Get<HealthProvider>().component;
 
         healthComponent.TakedDamage -= Highlight;
@@ -25,9 +29,6 @@ public class HighlightDamageSystem : BaseSystem, IEnableSystem, IDisableSystem
 
     private void Highlight()
     {
-        if (Providers.Has<ViewSpriteProvider>() == false)
-            return;
-
         var sprite = Providers.Get<ViewSpriteProvider>().component.spriteRenderer;
 
         Color defaultColor = sprite.color;

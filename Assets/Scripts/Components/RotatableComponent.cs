@@ -1,5 +1,7 @@
-﻿[System.Serializable]
-public struct RotatableComponent
+﻿using Lefrut.Framework;
+
+[System.Serializable]
+public struct RotatableComponent : IData
 {
     public float rotationalSpeed;
 }

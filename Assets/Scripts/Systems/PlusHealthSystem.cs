@@ -1,13 +1,16 @@
-﻿using UnityEngine;
+﻿using Lefrut.Framework;
+using UnityEngine;
 
-public class PlusHealthSystem : BaseSystem, ITriggableSystem
+public class PlusHealthSystem : BaseSystem, ITriggerableSystem
 {
+    public override void AddProviders()
+    {
+        NeededProviders.Set(new PlusHealthProvider(), this);
+        NeededProviders.Set(new EntityProvider(), this);
+    }
+
     public void TriggetEnter(Collider2D collision)
     {
-        if (Providers.Has<PlusHealthProvider>() == false ||
-            Providers.Has<EntityProvider>() == false) 
-            return;
-
         var plusHealthComponent = Providers.Get<PlusHealthProvider>().component;
 
         AddHealth(collision, plusHealthComponent);
@@ -21,7 +24,7 @@ public class PlusHealthSystem : BaseSystem, ITriggableSystem
     {
         var plusHealth = plusHealthComponent.plusHealth;
 
-        if (collision.TryGetComponent(out Entity entity))
+        if (collision.TryGetComponent(out Facade entity))
         {
             if (entity.Providers.TryGet(out HealthProvider healthProvider))
             {

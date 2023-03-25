@@ -1,7 +1,8 @@
-﻿using UnityEngine;
+﻿using Lefrut.Framework;
+using UnityEngine;
 
 [System.Serializable]
-public class ViewComponent
+public class ViewComponent : IData
 {
     public GameObject view;
 }

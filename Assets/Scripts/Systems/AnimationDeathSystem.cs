@@ -1,25 +1,30 @@
-﻿public class AnimationDeathSystem : BaseSystem, IStartableSystem
+﻿using Lefrut.Framework;
+using UnityEngine;
+
+public class AnimationDeathSystem : BaseSystem, IStartableSystem
 {
+    public override void AddProviders()
+    {
+        NeededProviders.Set(new HealthProvider(), this);
+        NeededProviders.Set(new AnimationDeathProvider(), this);
+        NeededProviders.Set(new ViewProvider(), this);
+        NeededProviders.Set(new EntityIsDieProvider(), this);
+    }
+
     public void Start()
     {
-        if (Providers.Has<HealthProvider>() == false) return;
-
         Providers.Get<HealthProvider>().component.ZeroHealth += Die;
     }
 
     public void Die()
     {
-        if (Providers.Has<HealthProvider>() == false ||
-            Providers.Has<AnimationDeathProvider>() == false)
-            return;
-
         var animationDeathComponent = Providers.Get<AnimationDeathProvider>().component;
 
         var prefab = animationDeathComponent.prefab;
         var spawnPoint = animationDeathComponent.spawnPoint;
         var timerBeforeDelete = animationDeathComponent.timerBeforeDelete;
 
-        if(Providers.TryGet(out ViewProvider viewProvider) == true)
+        if (Providers.TryGet(out ViewProvider viewProvider) == true)
         {
             spawnPoint.rotation = viewProvider.component.view.transform.rotation;
         }
@@ -28,9 +33,6 @@
 
         deletableObjectCreator.Create();
 
-        if (Providers.Has<EntityIsDieProvider>() == true)
-        {
-            Providers.Get<EntityIsDieProvider>().component.IsIt = true;
-        }
+        Providers.Get<EntityIsDieProvider>().component.IsIt = true;
     }
 }

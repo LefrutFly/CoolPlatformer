@@ -1,9 +1,15 @@
-﻿using System.Collections;
+﻿using Lefrut.Framework;
+using System.Collections;
 using UnityEngine;
 
-public class PlayerCamera : Entity
+public class PlayerCamera : Facade
 {
-    protected override void Initialize()
+    protected override void InitData()
+    {
+        AddData(new CameraFollowPlayer());
+    }
+
+    protected override void InitSystems()
     {
         StartCoroutine(GetLinks());
 

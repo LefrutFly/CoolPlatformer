@@ -4,10 +4,10 @@ public interface IInventorySlot
 {
     bool IsEmpty { get; }
 
-    IInventoryItem Item { get; }
+    InventoryItem Item { get; }
     long ItemID { get; }
     int Count { get; }
 
-    void SetItem(IInventoryItem item);
+    void SetItem(InventoryItem item);
     void RemoveItems();
 }

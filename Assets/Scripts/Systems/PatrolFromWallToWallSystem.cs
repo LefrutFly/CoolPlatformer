@@ -1,17 +1,21 @@
-﻿using UnityEngine;
+﻿using Lefrut.Framework;
+using UnityEngine;
 
 public class PatrolFromWallToWallSystem : BaseSystem, IFixedUpdatableSystem
 {
     private bool isLeft = true;
 
+
+    public override void AddProviders()
+    {
+        NeededProviders.Set(new MoveSpeedProvider(), this);
+        NeededProviders.Set(new EntityProvider(), this);
+        NeededProviders.Set(new PointCheckerProvider(), this);
+        NeededProviders.Set(new ViewProvider(), this);
+    }
+
     public void FixedUpdate()
     {
-        if (Providers.Has<MoveSpeedProvider>() == false ||
-            Providers.Has<EntityProvider>() == false ||
-            Providers.Has<PointCheckerProvider>() == false ||
-            Providers.Has<ViewProvider>() == false)
-            return;
-
         Patrol();
     }
 

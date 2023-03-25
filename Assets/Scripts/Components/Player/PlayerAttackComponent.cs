@@ -1,7 +1,8 @@
-﻿using UnityEngine;
+﻿using Lefrut.Framework;
+using UnityEngine;
 
 [System.Serializable]
-public class PlayerAttackComponent
+public class PlayerAttackComponent : IData
 {
     public float damage;
     public float delayBeforeAttack;

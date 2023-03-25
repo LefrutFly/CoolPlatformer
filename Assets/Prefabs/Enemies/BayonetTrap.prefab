@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 9024339329649801155}
   - component: {fileID: 9024339329649801154}
   - component: {fileID: 9024339329649801181}
+  - component: {fileID: 2181727499724183188}
   m_Layer: 0
   m_Name: BayonetTrap
   m_TagString: Untagged
@@ -98,11 +99,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c236318eee37af40a4b50b66aacc7fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  providersList:
+  monoProvidersOnFacade:
   - {fileID: 9024339329649801152}
   - {fileID: 9024339329649801155}
   - {fileID: 9024339329649801154}
   - {fileID: 9024339329649801181}
+  index: 0
 --- !u!114 &9024339329649801152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,6 +117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15c3822cf157aff42945d395daa249c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Facade: {fileID: 0}
   component:
     damage: 80
     delayBeforeAttack: 0.2
@@ -134,6 +137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28abf812ab4f2ed448debe03557a63b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Facade: {fileID: 0}
   component:
     IsIt: 0
 --- !u!114 &9024339329649801154
@@ -148,6 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a0cf68781ec2d345af7f3a2c6bdb272, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Facade: {fileID: 0}
   component:
     IsIt: 0
 --- !u!114 &9024339329649801181
@@ -162,8 +167,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ffa06eaee6c6ec4e8f6fa3de8448907, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Facade: {fileID: 0}
   component:
     entity: {fileID: 9024339329649801153}
+--- !u!114 &2181727499724183188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9024339329649801180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 970d2067f2da2154b9c1dae4cd9d0952, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9024339330379757387
 GameObject:
   m_ObjectHideFlags: 0
@@ -251,7 +269,7 @@ SpriteRenderer:
   m_SpriteSortPoint: 0
 --- !u!95 &9024339330379757384
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -268,7 +286,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &9024339330678877745
 GameObject:
   m_ObjectHideFlags: 0

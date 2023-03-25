@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 9145553799928484846}
   - component: {fileID: 9145553799928484833}
   - component: {fileID: 9145553799928484834}
+  - component: {fileID: 7637391468588173710}
   m_Layer: 0
   m_Name: Saw
   m_TagString: Untagged
@@ -203,10 +204,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42bfe54f588251841a4a6d470838de42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  providersList:
+  monoProvidersOnFacade:
   - {fileID: 9145553799928484846}
   - {fileID: 9145553799928484833}
   - {fileID: 9145553799928484834}
+  index: 0
 --- !u!114 &9145553799928484846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,8 +221,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5289fa153cbbe91478f99a35662df1b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Facade: {fileID: 0}
   component:
-    rotationalSpeed: 60
+    rotationalSpeed: 120
 --- !u!114 &9145553799928484833
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,6 +236,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ffa06eaee6c6ec4e8f6fa3de8448907, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Facade: {fileID: 0}
   component:
     entity: {fileID: 9145553799928484847}
 --- !u!114 &9145553799928484834
@@ -247,6 +251,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06e764581a297354f8cf309da0fcf3c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Facade: {fileID: 0}
   component:
     damage: 2
     cooldown: 0.1
+--- !u!114 &7637391468588173710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9145553799928484843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 970d2067f2da2154b9c1dae4cd9d0952, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

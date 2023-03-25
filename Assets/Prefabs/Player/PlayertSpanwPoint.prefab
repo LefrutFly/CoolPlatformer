@@ -87,7 +87,7 @@ SpriteRenderer:
   m_SpriteSortPoint: 0
 --- !u!95 &4122176276140672390
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -104,7 +104,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &4122176276938800024
 GameObject:
   m_ObjectHideFlags: 0
@@ -178,7 +178,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4122176277110705073}
   - component: {fileID: 4122176277110705087}
-  - component: {fileID: 4122176277110705086}
+  - component: {fileID: 4793455208506217185}
+  - component: {fileID: 1966333282440218129}
   m_Layer: 0
   m_Name: PlayertSpanwPoint
   m_TagString: Untagged
@@ -215,9 +216,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53b0bec8390619248a09e9315dc61022, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  providersList:
-  - {fileID: 4122176277110705086}
---- !u!114 &4122176277110705086
+  monoProvidersOnFacade:
+  - {fileID: 1966333282440218129}
+  index: 0
+--- !u!114 &4793455208506217185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4122176277110705072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 970d2067f2da2154b9c1dae4cd9d0952, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1966333282440218129
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -229,6 +243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62f12c1eaa4650646a0a90e3eaff01c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Facade: {fileID: 0}
   component:
     player: {fileID: 0}
     spawnPoint: {fileID: 4122176277008980730}

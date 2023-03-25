@@ -1,18 +1,21 @@
-﻿using UnityEngine;
+﻿using Lefrut.Framework;
+using UnityEngine;
 
 public class DestroyDeathSystem : BaseSystem, IStartableSystem, IDisableSystem
 {
+    public override void AddProviders()
+    {
+        NeededProviders.Set(new HealthProvider(), this);
+        NeededProviders.Set(new EntityProvider(), this);
+    }
+
     public void Start()
     {
-        if (Providers.Has<HealthProvider>() == false || Providers.Has<EntityProvider>() == false) return;
-
         Providers.Get<HealthProvider>().component.ZeroHealth += Die;
     }
 
     public void Disable()
     {
-        if (Providers.Has<HealthProvider>() || Providers.Has<EntityProvider>()) return;
-
         Providers.Get<HealthProvider>().component.ZeroHealth -= Die;
     }
 

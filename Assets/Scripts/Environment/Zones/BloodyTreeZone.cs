@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using Lefrut.Framework;
 using UnityEngine;
 
 public class BloodyTreeZone : MonoBehaviour
@@ -19,7 +18,9 @@ public class BloodyTreeZone : MonoBehaviour
             {
                 manaProvider.component.Mana = 0;
             }
-            if (spawner.Systems.TryGet(out PlayerSpawnerSystem playerSpawnerSystem))
+            if (GlobalSystemStorage.GetInstance()
+                .Systems[spawner.Index]
+                .TryGet(out PlayerSpawnerSystem playerSpawnerSystem))
             {
                 playerSpawnerSystem.IsActive = false;
             }
@@ -30,7 +31,9 @@ public class BloodyTreeZone : MonoBehaviour
     {
         if (collision.TryGetComponent(out Player player))
         {
-            if (spawner.Systems.TryGet(out PlayerSpawnerSystem playerSpawnerSystem))
+            if (GlobalSystemStorage.GetInstance()
+                .Systems[spawner.Index]
+                .TryGet(out PlayerSpawnerSystem playerSpawnerSystem))
             {
                 playerSpawnerSystem.IsActive = true;
             }

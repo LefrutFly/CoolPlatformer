@@ -1,5 +1,7 @@
-﻿[System.Serializable]
-public class CameraSpeedComponent
+﻿using Lefrut.Framework;
+
+[System.Serializable]
+public class CameraSpeedComponent : IData
 {
     public float speed;
 }

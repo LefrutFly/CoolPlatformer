@@ -50,6 +50,7 @@ GameObject:
   - component: {fileID: 7648560271491918120}
   - component: {fileID: 7657833146081727338}
   - component: {fileID: 2785388069968161764}
+  - component: {fileID: 5579112311435078749}
   m_Layer: 6
   m_Name: Saw_3
   m_TagString: Untagged
@@ -150,10 +151,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42bfe54f588251841a4a6d470838de42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  providersList:
+  monoProvidersOnFacade:
   - {fileID: 2435854050588974095}
   - {fileID: 2435854050588974080}
   - {fileID: 2435854050588974083}
+  index: 0
 --- !u!114 &2435854050588974095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,6 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5289fa153cbbe91478f99a35662df1b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Facade: {fileID: 0}
   component:
     rotationalSpeed: 20
 --- !u!114 &2435854050588974080
@@ -180,6 +183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ffa06eaee6c6ec4e8f6fa3de8448907, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Facade: {fileID: 0}
   component:
     entity: {fileID: 2435854050588974094}
 --- !u!114 &2435854050588974083
@@ -194,6 +198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06e764581a297354f8cf309da0fcf3c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Facade: {fileID: 0}
   component:
     damage: 5
     cooldown: 0.5
@@ -245,6 +250,18 @@ CircleCollider2D:
   m_Offset: {x: 0.67, y: -1.78}
   serializedVersion: 2
   m_Radius: 0.45
+--- !u!114 &5579112311435078749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2435854050588974090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 970d2067f2da2154b9c1dae4cd9d0952, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2435854050744272987
 GameObject:
   m_ObjectHideFlags: 0

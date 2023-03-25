@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using Lefrut.Framework;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ColliderDeterminant
 {
-    public bool IsItT<T>(Collider2D collider, Entity thisEntity) where T : MonoBehaviour
+    public bool IsItT<T>(Collider2D collider, Facade thisEntity) where T : MonoBehaviour
     {
         List<Collider2D> colliders = new List<Collider2D>();
 

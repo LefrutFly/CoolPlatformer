@@ -1,8 +1,9 @@
+using Lefrut.Framework;
 using System;
 using UnityEngine;
 
 [Serializable]
-public class HealthComponent
+public class HealthComponent : IData
 {
     public event Action ChangedHealth;
     public event Action TakedDamage;

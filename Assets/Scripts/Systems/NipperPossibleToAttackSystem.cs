@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Lefrut.Framework;
+using UnityEngine;
 
 public class NipperPossibleToAttackSystem : BaseSystem, IUpdatableSystem, IEnableSystem
 {
@@ -6,15 +7,18 @@ public class NipperPossibleToAttackSystem : BaseSystem, IUpdatableSystem, IEnabl
     private AttackComponent playerAttackComponent;
     private Collider2D collider;
     private ColliderDeterminant colliderDeterminant = new ColliderDeterminant();
-    private Entity thisEntity;
+    private Facade thisEntity;
+
+
+    public override void AddProviders()
+    {
+        NeededProviders.Set(new EntityProvider(), this);
+        NeededProviders.Set(new AttackReachProvider(), this);
+        NeededProviders.Set(new PossibleToAttackProvider(), this);
+    }
 
     public void Enable()
     {
-        if (Providers.Has<EntityProvider>() == false ||
-            Providers.Has<AttackReachProvider>() == false ||
-            Providers.Has<PossibleToAttackProvider>() == false)
-            return;
-
         var nipper = Providers.Get<EntityProvider>().component.entity as Nipper;
 
         AddSystems(nipper);
@@ -27,11 +31,6 @@ public class NipperPossibleToAttackSystem : BaseSystem, IUpdatableSystem, IEnabl
 
     public void Update()
     {
-        if (Providers.Has<EntityProvider>() == false ||
-            Providers.Has<AttackReachProvider>() == false ||
-            Providers.Has<PossibleToAttackProvider>() == false)
-            return;
-
         thisEntity = Providers.Get<EntityProvider>().component.entity;
         var isAttackReach = Providers.Get<AttackReachProvider>().component.IsIt;
         var isAnotherEnemy = colliderDeterminant.IsItT<EnemyTag>(collider, thisEntity);
@@ -42,7 +41,9 @@ public class NipperPossibleToAttackSystem : BaseSystem, IUpdatableSystem, IEnabl
 
     private void AddSystems(Nipper nipper)
     {
-        if (nipper.Systems.Has<AttackReachSystem<EnemyTag>>() == false)
+        var globalSystemStorage = GlobalSystemStorage.GetInstance();
+        var index = Facade.Index;
+        if (globalSystemStorage.Systems[index].Has<AttackReachSystem<EnemyTag>>() == false)
         {
             nipper.AddSystem(new AttackReachSystem<EnemyTag>());
         }

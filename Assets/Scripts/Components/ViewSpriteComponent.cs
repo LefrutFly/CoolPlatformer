@@ -1,7 +1,8 @@
-﻿using UnityEngine;
+﻿using Lefrut.Framework;
+using UnityEngine;
 
 [System.Serializable]
-public class ViewSpriteComponent
+public class ViewSpriteComponent : IData
 {
     public SpriteRenderer spriteRenderer;
 }

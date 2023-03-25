@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 871530800296496127}
   - component: {fileID: 871530800296496123}
   - component: {fileID: 871530800296496097}
+  - component: {fileID: 5021804751672010323}
   m_Layer: 0
   m_Name: 'BIg Spike '
   m_TagString: Untagged
@@ -69,8 +70,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09d28694b4dd9c94da2a7cd1e0bbf059, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  providersList:
+  monoProvidersOnFacade:
   - {fileID: 871530800296496123}
+  index: 0
 --- !u!114 &871530800296496123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83,6 +85,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06e764581a297354f8cf309da0fcf3c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Facade: {fileID: 0}
   component:
     damage: 12
     cooldown: 0.35
@@ -114,6 +117,18 @@ PolygonCollider2D:
     - - {x: -0.026938915, y: 2.500932}
       - {x: -0.47322506, y: -0.48061168}
       - {x: 0.4044893, y: -0.48061156}
+--- !u!114 &5021804751672010323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 871530800296496096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 970d2067f2da2154b9c1dae4cd9d0952, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &871530800426471345
 GameObject:
   m_ObjectHideFlags: 0

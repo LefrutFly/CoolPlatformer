@@ -1,12 +1,17 @@
-﻿public class StuckInGroundSystem : BaseSystem, IUpdatableSystem
+﻿using Lefrut.Framework;
+
+public class StuckInGroundSystem : BaseSystem, IUpdatableSystem
 {
+    public override void AddProviders()
+    {
+        NeededProviders.Set(new PointCheckerProvider(), this);
+        NeededProviders.Set(new HealthProvider(), this);
+        NeededProviders.Set(new EntityIsDieProvider(), this);
+
+    }
+
     public void Update()
     {
-        if (Providers.Has<PointCheckerProvider>() == false ||
-            Providers.Has<HealthProvider>() == false ||
-            Providers.Has<EntityIsDieProvider>() == false)
-            return;
-
         var pointChecker = Providers.Get<PointCheckerProvider>().component;
         var Health = Providers.Get<HealthProvider>().component;
         var entityIsDie = Providers.Get<EntityIsDieProvider>().component;

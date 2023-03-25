@@ -73,6 +73,7 @@ GameObject:
   - component: {fileID: 7980193291829213607}
   - component: {fileID: 7980193291829213606}
   - component: {fileID: 7980193291829213600}
+  - component: {fileID: 764549850109111038}
   m_Layer: 7
   m_Name: ColliderAttack
   m_TagString: Untagged
@@ -133,7 +134,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d28a9a118b7b40439cc58239706de11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  providersList: []
+  monoProvidersOnFacade: []
+  index: 0
+--- !u!114 &764549850109111038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7980193291829213605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 970d2067f2da2154b9c1dae4cd9d0952, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7980193291940951685
 GameObject:
   m_ObjectHideFlags: 0
@@ -177,6 +191,7 @@ GameObject:
   - component: {fileID: 7980193292237097721}
   - component: {fileID: 7980193292237097720}
   - component: {fileID: 7980193292237097727}
+  - component: {fileID: 7456124080674261588}
   m_Layer: 7
   m_Name: HealthBar
   m_TagString: Untagged
@@ -212,9 +227,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03f60c9480f6b494a8d284e886eed0ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  providersList:
-  - {fileID: 7980193292237097727}
+  monoProvidersOnFacade:
   - {fileID: 7980193292237097720}
+  - {fileID: 7980193292237097727}
+  index: 0
 --- !u!114 &7980193292237097720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -227,6 +243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ffa06eaee6c6ec4e8f6fa3de8448907, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Facade: {fileID: 0}
   component:
     entity: {fileID: 5452556520251138784}
 --- !u!114 &7980193292237097727
@@ -241,10 +258,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39881e31c92172b46bed7d5c5f28c911, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Facade: {fileID: 0}
   component:
     text: {fileID: 7980193292559382125}
     animator: {fileID: 7980193292559382127}
     nameAnimationTrigger: ChangeHP
+--- !u!114 &7456124080674261588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7980193292237097725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 970d2067f2da2154b9c1dae4cd9d0952, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7980193292285973752
 GameObject:
   m_ObjectHideFlags: 0
@@ -337,7 +367,7 @@ SpriteRenderer:
   m_SpriteSortPoint: 0
 --- !u!95 &7980193292285973754
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -354,7 +384,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &7980193292559382115
 GameObject:
   m_ObjectHideFlags: 0
@@ -530,7 +560,7 @@ MonoBehaviour:
   m_maskType: 0
 --- !u!95 &7980193292559382127
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -547,7 +577,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &7980193292895326721
 GameObject:
   m_ObjectHideFlags: 0
@@ -571,6 +601,7 @@ GameObject:
   - component: {fileID: 7980193292895326742}
   - component: {fileID: 6556858013921765297}
   - component: {fileID: 2413965756235248182}
+  - component: {fileID: 5997435353239340768}
   m_Layer: 7
   m_Name: Nipper
   m_TagString: Untagged
@@ -645,7 +676,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5c03a94c34831d49932b8075817b006, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  providersList:
+  monoProvidersOnFacade:
   - {fileID: 7980193292895326728}
   - {fileID: 7980193292895326735}
   - {fileID: 7980193292895326734}
@@ -656,6 +687,8 @@ MonoBehaviour:
   - {fileID: 7980193292895326740}
   - {fileID: 7980193292895326742}
   - {fileID: 6556858013921765297}
+  - {fileID: 2413965756235248182}
+  index: 0
 --- !u!114 &7980193292895326728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -668,6 +701,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ffa06eaee6c6ec4e8f6fa3de8448907, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Facade: {fileID: 0}
   component:
     entity: {fileID: 5452556520251138784}
 --- !u!114 &7980193292895326735
@@ -682,6 +716,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f022ae0cdf97c584ab3168956caacd65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Facade: {fileID: 0}
   component:
     view: {fileID: 7980193293075868963}
 --- !u!114 &7980193292895326734
@@ -696,6 +731,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b3d5c08fe6ddc141b5c776013890c13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Facade: {fileID: 0}
   component:
     health: 150
     maxHealth: 150
@@ -711,6 +747,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e256c8c5f7f70040aaf5bc4b0eed3b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Facade: {fileID: 0}
   component:
     leftPoint: {fileID: 7980193291535145533}
     rightPoint: {fileID: 7980193291740596441}
@@ -743,6 +780,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be641ac97f84d9445918ad4e5712f7c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Facade: {fileID: 0}
   component:
     moveSpeed: 300
 --- !u!114 &7980193292895326731
@@ -757,6 +795,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15c3822cf157aff42945d395daa249c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Facade: {fileID: 0}
   component:
     damage: 40
     delayBeforeAttack: 0.3
@@ -776,6 +815,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a0cf68781ec2d345af7f3a2c6bdb272, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Facade: {fileID: 0}
   component:
     IsIt: 0
 --- !u!114 &7980193292895326740
@@ -790,6 +830,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28abf812ab4f2ed448debe03557a63b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Facade: {fileID: 0}
   component:
     IsIt: 0
 --- !u!114 &7980193292895326742
@@ -804,6 +845,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23f52381bbf8899489ee5064a58dd8ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Facade: {fileID: 0}
   component:
     spriteRenderer: {fileID: 7980193292285973755}
 --- !u!114 &6556858013921765297
@@ -818,6 +860,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f88bd921fb443247ad0500b72d74651, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Facade: {fileID: 0}
   component:
     prefab: {fileID: 3325935330621069112, guid: 7efe09ecd771d9441b528f03e1930ec4, type: 3}
     spawnPoint: {fileID: 7980193292895326733}
@@ -834,8 +877,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18e2f9bb0edf1a14c944c1909c5ed3e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Facade: {fileID: 0}
   component:
     IsIt: 0
+--- !u!114 &5997435353239340768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7980193292895326721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 970d2067f2da2154b9c1dae4cd9d0952, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7980193292947030297
 GameObject:
   m_ObjectHideFlags: 0

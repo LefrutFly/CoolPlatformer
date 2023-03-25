@@ -1,29 +1,30 @@
-﻿using UnityEngine;
+﻿using Lefrut.Framework;
+using UnityEngine;
 
-public class DisableDeathSystem : BaseSystem, IStartableSystem, IDisableSystem
+public class DisableDeathSystem : BaseSystem, IEnableSystem, IDisableSystem
 {
-    public void Start()
+    public override void AddProviders()
     {
-        if (Providers.Has<HealthProvider>() == false || Providers.Has<EntityProvider>() == false) return;
-     
+        NeededProviders.Set(new HealthProvider(), this);
+        NeededProviders.Set(new EntityProvider(), this);
+        NeededProviders.Set(new EntityIsDieProvider(), this);
+    }
+
+    public void Enable()
+    {
         Providers.Get<HealthProvider>().component.ZeroHealth += Die;
     }
 
     public void Disable()
     {
-        if (Providers.Has<HealthProvider>() || Providers.Has<EntityProvider>()) return;
-
         Providers.Get<HealthProvider>().component.ZeroHealth -= Die;
     }
 
     protected void Die()
-    {      
+    {
         var entity = Providers.Get<EntityProvider>().component.entity;
         entity.gameObject.SetActive(false);
 
-        if (Providers.Has<EntityIsDieProvider>() == true)
-        {
-            Providers.Get<EntityIsDieProvider>().component.IsIt = true;
-        }
+        Providers.Get<EntityIsDieProvider>().component.IsIt = true;
     }
 }

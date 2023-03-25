@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Lefrut.Framework;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,11 +7,14 @@ public class PlayerAttackSystem : BaseSystem, IUpdatableSystem
 {
     private Coroutine attack;
 
+    public override void AddProviders()
+    {
+        NeededProviders.Set(new PlayerAttackProvider(), this);
+    }
+
     public void Update()
     {
         if (IsActive == false) return;
-
-        if (Providers.Has<PlayerAttackProvider>() == false) return;
 
         if (attack != null) return;
 
@@ -19,7 +23,7 @@ public class PlayerAttackSystem : BaseSystem, IUpdatableSystem
 
     private IEnumerator Attack()
     {
-        var playerAttackComponent = Providers.Get<PlayerAttackProvider>().component;
+        var playerAttackComponent = (PlayerAttackComponent)Providers.Get<PlayerAttackProvider>().Data;
 
         var collider = playerAttackComponent.collider;
         var animator = playerAttackComponent.animator;
@@ -28,7 +32,7 @@ public class PlayerAttackSystem : BaseSystem, IUpdatableSystem
         var delayAfterAttack = playerAttackComponent.delayAfterAttack;
         var damage = playerAttackComponent.damage;
 
-        Player player = Actor as Player;
+        Player player = Facade as Player;
         PlayerInputs inputs = player.inputs;
         float meleeAtackKey = inputs.Player.MeleeAttack.ReadValue<float>();
 
@@ -46,7 +50,7 @@ public class PlayerAttackSystem : BaseSystem, IUpdatableSystem
 
             foreach (var c in colliders)
             {
-                if (c.gameObject.TryGetComponent(out Entity entity) && c.gameObject.GetComponent<Player>() == null)
+                if (c.gameObject.TryGetComponent(out Facade entity) && c.gameObject.GetComponent<Player>() == null)
                 {
                     if (entity.Providers.TryGet(out HealthProvider healthProvider))
                     {

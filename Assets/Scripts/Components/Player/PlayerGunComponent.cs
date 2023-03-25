@@ -1,7 +1,8 @@
+using Lefrut.Framework;
 using UnityEngine;
 
 [System.Serializable]
-public class PlayerGunComponent
+public class PlayerGunComponent : IData
 {
     public PlayerGun gun;
     public Animator animator;

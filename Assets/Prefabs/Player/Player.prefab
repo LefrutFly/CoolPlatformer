@@ -57,6 +57,7 @@ GameObject:
   - component: {fileID: 2514512872668693709}
   - component: {fileID: 2514512872668693710}
   - component: {fileID: 4291937375358332886}
+  - component: {fileID: 4596389460867412227}
   m_Layer: 9
   m_Name: Player
   m_TagString: Untagged
@@ -131,21 +132,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d2a58bc93a05d4499a238b355727e36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  providersList:
+  monoProvidersOnFacade:
   - {fileID: 2514512872668693701}
   - {fileID: 2514512872668693700}
   - {fileID: 2514512872668693696}
+  - {fileID: 2514512872668693707}
   - {fileID: 2514512872668693708}
-  - {fileID: 2514512872668693699}
+  - {fileID: 2514512872668693706}
   - {fileID: 2514512872668693702}
+  - {fileID: 2514512872668693699}
   - {fileID: 2514512872668693704}
   - {fileID: 2514512872668693703}
   - {fileID: 2514512872668693705}
-  - {fileID: 2514512872668693706}
-  - {fileID: 2514512872668693707}
   - {fileID: 2514512872668693709}
   - {fileID: 2514512872668693710}
   - {fileID: 4291937375358332886}
+  index: 0
 --- !u!114 &2514512872668693701
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,6 +160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ffa06eaee6c6ec4e8f6fa3de8448907, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Facade: {fileID: 0}
   component:
     entity: {fileID: 2514512872668693697}
 --- !u!114 &2514512872668693700
@@ -172,6 +175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f022ae0cdf97c584ab3168956caacd65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Facade: {fileID: 0}
   component:
     view: {fileID: 2514512872915295757}
 --- !u!114 &2514512872668693696
@@ -186,6 +190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b3d5c08fe6ddc141b5c776013890c13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Facade: {fileID: 0}
   component:
     health: 100
     maxHealth: 100
@@ -201,6 +206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c45f529f85c33d46b946184a5301c40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Facade: {fileID: 0}
   component:
     mana: 0
     maxMana: 100
@@ -216,6 +222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e256c8c5f7f70040aaf5bc4b0eed3b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Facade: {fileID: 0}
   component:
     leftPoint: {fileID: 2514512873699860637}
     rightPoint: {fileID: 2514512872428843653}
@@ -248,6 +255,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3001427d8a0074a4e9c4e056acf77b6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Facade: {fileID: 0}
   component:
     direction: {x: 0, y: 0, z: 0}
 --- !u!114 &2514512872668693702
@@ -262,6 +270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4c1baff0e87463488071e7a3bd70869, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Facade: {fileID: 0}
   component:
     jumpForce: 25
 --- !u!114 &2514512872668693699
@@ -276,6 +285,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4933c205c166e674280d37d4dc765e5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Facade: {fileID: 0}
   component:
     moveSpeed: 500
 --- !u!114 &2514512872668693704
@@ -290,10 +300,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbb1cda9fdf26714d97beebca167de04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Facade: {fileID: 0}
   component:
-    damage: 25
-    delayBeforeAttack: 0.1
-    delayAfterAttack: 0.3
+    damage: 45
+    delayBeforeAttack: 0.35
+    delayAfterAttack: 0.15
     animator: {fileID: 2514512873325851268}
     animationTrigger: Attack
     collider: {fileID: 2514512873586696594}
@@ -309,6 +320,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23f52381bbf8899489ee5064a58dd8ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Facade: {fileID: 0}
   component:
     spriteRenderer: {fileID: 2514512873325851269}
 --- !u!114 &2514512872668693705
@@ -323,12 +335,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31f6e2dde00182e408d1f188592e5e15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Facade: {fileID: 0}
   component:
     gun: {fileID: 0}
-    animator: {fileID: 0}
+    animator: {fileID: 7351941342240571112, guid: 999c57bb277f93f40bd645858a278fe8, type: 3}
     attackAnimatorTrigger: Attack_1
     closeGunAnimatorTrigger: CloseGun
-    gunPrefab: {fileID: 5833212271510055702, guid: 999c57bb277f93f40bd645858a278fe8, type: 3}
+    gunPrefab: {fileID: 7511816636838370273, guid: 999c57bb277f93f40bd645858a278fe8, type: 3}
     gunPosition: {fileID: 2514512874256929496}
     cooldown: 1.5
     damage: 75
@@ -345,6 +358,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f88bd921fb443247ad0500b72d74651, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Facade: {fileID: 0}
   component:
     prefab: {fileID: 3030280554590735127, guid: 07cd266d16ed70448b9a74b348a45c6c, type: 3}
     spawnPoint: {fileID: 2514512872668693698}
@@ -361,6 +375,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18e2f9bb0edf1a14c944c1909c5ed3e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Facade: {fileID: 0}
   component:
     IsIt: 0
 --- !u!114 &4291937375358332886
@@ -375,11 +390,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb6703a5b6b6f7549aa6fb2289d9e5bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Facade: {fileID: 0}
   component:
-    range: 4
-    duration: 0.1
-    cooldown: 0.8
+    range: 6
+    duration: 0.4
+    cooldown: 0.5
     manaCost: 2
+--- !u!114 &4596389460867412227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2514512872668693725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 970d2067f2da2154b9c1dae4cd9d0952, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2514512872904704090
 GameObject:
   m_ObjectHideFlags: 0
@@ -531,7 +559,7 @@ SpriteRenderer:
   m_SpriteSortPoint: 0
 --- !u!95 &2514512873325851268
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -548,7 +576,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &2514512873355959991
 GameObject:
   m_ObjectHideFlags: 0

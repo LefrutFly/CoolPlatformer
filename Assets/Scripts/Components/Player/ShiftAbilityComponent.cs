@@ -1,7 +1,7 @@
-﻿using UnityEngine;
+﻿using Lefrut.Framework;
 
 [System.Serializable]
-public struct ShiftAbilityComponent
+public struct ShiftAbilityComponent : IData
 {
     public float range;
     public float duration;

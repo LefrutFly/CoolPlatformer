@@ -1,8 +1,9 @@
+using Lefrut.Framework;
 using System;
 using UnityEngine;
 
 [System.Serializable]
-public class ManaComponent
+public class ManaComponent : IData
 {
     public event Action ChangedMana;
     public event Action ChangedMaxMana;

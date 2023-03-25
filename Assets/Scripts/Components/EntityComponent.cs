@@ -1,5 +1,7 @@
-﻿[System.Serializable]
-public class EntityComponent
+﻿using Lefrut.Framework;
+
+[System.Serializable]
+public class EntityComponent : IData
 {
-    public Entity entity;
+    public Facade entity;
 }

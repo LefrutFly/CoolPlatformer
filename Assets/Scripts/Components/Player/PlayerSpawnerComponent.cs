@@ -1,7 +1,8 @@
-﻿using UnityEngine;
+﻿using Lefrut.Framework;
+using UnityEngine;
 
 [System.Serializable]
-public class PlayerSpawnerComponent
+public class PlayerSpawnerComponent : IData
 {
     public Player player;
     public Transform spawnPoint;

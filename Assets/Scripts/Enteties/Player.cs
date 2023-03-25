@@ -1,8 +1,28 @@
-public class Player : Entity
+using Lefrut.Framework;
+using UnityEngine;
+
+public class Player : Facade
 {
     public PlayerInputs inputs;
+    public IInventory inventory = new InventorySlotsData(99);
 
-    protected override void Initialize()
+
+    protected override void InitData()
+    {
+        AddData(new PointCheckerSystem());
+        AddData(new PlayerMoveSystem());
+        AddData(new PlayerJumpSystem());
+        AddData(new PlayerAttackSystem());
+        AddData(new PlayerGunSystem());
+        AddData(new ShiftAbilitySystem());
+        AddData(new HighlightDamageSystem());
+        AddData(new StuckInGroundSystem());
+
+        AddData(new AnimationDeathSystem());
+        AddData(new DisableDeathSystem());
+    }
+
+    protected override void InitSystems()
     {
         inputs = new PlayerInputs();
 

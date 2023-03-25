@@ -1,18 +1,21 @@
-﻿using UnityEngine;
+﻿using Lefrut.Framework;
+using UnityEngine;
 
 public class PlayerMoveSystem : BaseSystem, IFixedUpdatableSystem
 {
+    public override void AddProviders()
+    {
+        NeededProviders.Set(new EntityProvider(), this);
+        NeededProviders.Set(new PlayerMoveProvider(), this);
+        NeededProviders.Set(new ViewProvider(), this);
+        NeededProviders.Set(new PointCheckerProvider(), this);
+    }
+
     public void FixedUpdate()
     {
         if (IsActive == false) return;
 
-        if (Providers.Has<EntityProvider>() == false ||
-            Providers.Has<PlayerMoveProvider>() == false ||
-            Providers.Has<ViewProvider>() == false ||
-            Providers.Has<PointCheckerProvider>() == false)
-            return;
-
-        Player player = Actor as Player;
+        Player player = Facade as Player;
         PlayerInputs inputs = player.inputs;
         Vector2 direction = inputs.Player.Move.ReadValue<Vector2>();
 

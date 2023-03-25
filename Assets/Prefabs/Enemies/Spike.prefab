@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8298612557824783994}
   - component: {fileID: 8298612557824783995}
   - component: {fileID: 8298612557824783999}
+  - component: {fileID: 209518881736147118}
   m_Layer: 0
   m_Name: Spike
   m_TagString: Untagged
@@ -95,8 +96,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09d28694b4dd9c94da2a7cd1e0bbf059, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  providersList:
+  monoProvidersOnFacade:
   - {fileID: 8298612557824783999}
+  index: 0
 --- !u!114 &8298612557824783999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,9 +111,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06e764581a297354f8cf309da0fcf3c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Facade: {fileID: 0}
   component:
     damage: 3
     cooldown: 0.2
+--- !u!114 &209518881736147118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8298612557824783972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 970d2067f2da2154b9c1dae4cd9d0952, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8298612557962981941
 GameObject:
   m_ObjectHideFlags: 0

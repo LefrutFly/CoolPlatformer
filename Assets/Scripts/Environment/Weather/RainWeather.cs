@@ -9,6 +9,7 @@ public class RainWeather : Weather
     [SerializeField] private float timeBeforeRain;
     [SerializeField] private List<GameObject> rainEffects;
     [SerializeField] private GameObject rainObject;
+    [SerializeField] protected GameObject rainVolume;
 
     public override void StartWeather()
     {
@@ -23,8 +24,9 @@ public class RainWeather : Weather
     private IEnumerator StartRain()
     {
         rainObject.SetActive(true);
+        rainVolume?.SetActive(true);
 
-        foreach(var rain in rainEffects)
+        foreach (var rain in rainEffects)
         {
             rain.SetActive(true);
         }
@@ -47,6 +49,7 @@ public class RainWeather : Weather
         yield return new WaitForSeconds(timeBeforeRain);
 
         rainObject.SetActive(false);
+        rainVolume?.SetActive(false);
 
         foreach (var rain in rainEffects)
         {

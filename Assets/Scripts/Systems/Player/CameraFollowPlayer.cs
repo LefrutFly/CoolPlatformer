@@ -1,22 +1,22 @@
-﻿using UnityEngine;
+﻿using Lefrut.Framework;
+using UnityEngine;
 
 public class CameraFollowPlayer : BaseSystem, IFixedUpdatableSystem
 {
+    public override void AddProviders()
+    {
+        NeededProviders.Set(new CameraSpeedProvider(), this);
+        NeededProviders.Set(new EntityProvider(), this);
+        NeededProviders.Set(new CameraShiftProvider(), this);
+    }
+
     public void FixedUpdate()
     {
-        if(Providers.Has<CameraSpeedProvider>() == false ||
-            Providers.Has<EntityProvider>() == false ||
-            Providers.Has<CameraShiftProvider>() == false) 
-            return;
-
-
         Follow();
     }
 
     private void Follow()
     {
-        if (Providers.Get<CameraShiftProvider>().component.target == null) return;
-
         var speed = Providers.Get<CameraSpeedProvider>().component.speed;
         var target = Providers.Get<CameraShiftProvider>().component.target;
         var shift = Providers.Get<CameraShiftProvider>().component.shift;

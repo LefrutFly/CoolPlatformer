@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Lefrut.Framework;
+using System.Collections;
 using UnityEngine;
 
 public class PlayerGunSystem : BaseSystem, IUpdatableSystem, IStartableSystem
@@ -7,11 +8,15 @@ public class PlayerGunSystem : BaseSystem, IUpdatableSystem, IStartableSystem
     private Coroutine close;
     private bool isOpen;
 
+
+    public override void AddProviders()
+    {
+        NeededProviders.Set(new PlayerGunProvider(), this);
+    }
+
     public void Start()
     {
         if (IsActive == false) return;
-
-        if (Providers.Has<PlayerGunProvider>() == false) return;
 
         var gunComponent = Providers.Get<PlayerGunProvider>().component;
 
@@ -24,7 +29,7 @@ public class PlayerGunSystem : BaseSystem, IUpdatableSystem, IStartableSystem
         gunComponent.gun.gameObject.SetActive(false);
         isOpen = false;
 
-        PlayerInputs inputs = (Actor as Player).inputs;
+        PlayerInputs inputs = (Facade as Player).inputs;
 
         inputs.Player.SummonGun.performed += context => EnableGun(gunComponent);
     }
@@ -32,8 +37,6 @@ public class PlayerGunSystem : BaseSystem, IUpdatableSystem, IStartableSystem
     public void Update()
     {
         if (IsActive == false) return;
-
-        if (Providers.Has<PlayerGunProvider>() == false) return;
 
         var gunComponent = Providers.Get<PlayerGunProvider>().component;
 
@@ -45,7 +48,7 @@ public class PlayerGunSystem : BaseSystem, IUpdatableSystem, IStartableSystem
 
     private IEnumerator Attack(PlayerGunComponent gunComponent)
     {
-        PlayerInputs inputs = (Actor as Player).inputs;
+        PlayerInputs inputs = (Facade as Player).inputs;
         float isAttackButton = inputs.Player.GunAttack.ReadValue<float>();
 
         var collider = gunComponent.gun.Providers.Get<Collider2DProvider>().component.collider;

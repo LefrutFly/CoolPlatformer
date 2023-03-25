@@ -1,10 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using Lefrut.Framework;
 
-public class DestractableBox : Entity
+public class DestractableBox : Facade
 {
-    protected override void Initialize()
+    protected override void InitData()
+    {
+        AddData(new AnimationDeathSystem());
+        AddData(new DisableDeathSystem());
+    }
+
+    protected override void InitSystems()
     {
         AddSystem(new AnimationDeathSystem());
         AddSystem(new DisableDeathSystem());

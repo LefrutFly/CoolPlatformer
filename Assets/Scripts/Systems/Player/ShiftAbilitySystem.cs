@@ -1,31 +1,38 @@
 ﻿using UnityEngine;
 using DG.Tweening;
 using System.Collections;
+using Lefrut.Framework;
 
 public class ShiftAbilitySystem : BaseSystem, IUpdatableSystem
 {
     private Coroutine cooldownCoroutine;
     private bool isReady = true;
 
+
+
+    public override void AddProviders()
+    {
+        NeededProviders.Set(new ShiftAbilityProvider(), this);
+        NeededProviders.Set(new EntityProvider(), this);
+        NeededProviders.Set(new PlayerMoveProvider(), this);
+    }
+
     public void Update()
     {
-        if (Providers.Has<ShiftAbilityProvider>() == false ||
-            Providers.Has<EntityProvider>() == false ||
-            Providers.Has<PlayerMoveProvider>() == false ||
-            IsActive == false)
+        if (IsActive == false)
             return;
 
         var shiftAbilityComponent = Providers.Get<ShiftAbilityProvider>().component;
         var entity = Providers.Get<EntityProvider>().component.entity;
         var moveCmponent = Providers.Get<PlayerMoveProvider>().component;
 
-        Player player = Actor as Player;
+        Player player = Facade as Player;
         PlayerInputs inputs = player.inputs;
 
         Shift(shiftAbilityComponent, entity, moveCmponent, inputs);
     }
 
-    private void Shift(ShiftAbilityComponent shiftAbility, Entity entity, PlayerMoveComponent moveComponent, PlayerInputs inputs)
+    private void Shift(ShiftAbilityComponent shiftAbility, Facade entity, PlayerMoveComponent moveComponent, PlayerInputs inputs)
     {
         var range = shiftAbility.range;
         var duration = shiftAbility.duration;
@@ -74,7 +81,7 @@ public class ShiftAbilitySystem : BaseSystem, IUpdatableSystem
         return direction;
     }
 
-    private void MoveEntity(Entity entity, Vector3 nextPoint, float duration, float cooldown)
+    private void MoveEntity(Facade entity, Vector3 nextPoint, float duration, float cooldown)
     {
         if (isReady)
         {
@@ -87,7 +94,7 @@ public class ShiftAbilitySystem : BaseSystem, IUpdatableSystem
         }
     }
 
-    private void MoveEntity(Entity entity, Vector3 nextPoint, float duration, float cooldown, ManaComponent mana, float manaCost)
+    private void MoveEntity(Facade entity, Vector3 nextPoint, float duration, float cooldown, ManaComponent mana, float manaCost)
     {
         if (isReady)
         {

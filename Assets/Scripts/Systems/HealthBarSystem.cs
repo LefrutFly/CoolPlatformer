@@ -1,11 +1,15 @@
-﻿public class HealthBarSystem : BaseSystem, IStartableSystem, IDisableSystem
+﻿using Lefrut.Framework;
+
+public class HealthBarSystem : BaseSystem, IStartableSystem, IDisableSystem
 {
+    public override void AddProviders()
+    {
+        NeededProviders.Set(new EntityProvider(), this);
+        NeededProviders.Set(new HealthBarProvider(), this);
+    }
+
     public void Start()
     {
-        if (Providers.Has<EntityProvider>() == false ||
-            Providers.Has<HealthBarProvider>() == false )
-            return;
-
         var entity = Providers.Get<EntityProvider>().component.entity;
 
         if (entity.Providers.TryGet(out HealthProvider healthProvider))
@@ -25,9 +29,6 @@
 
     public void Disable()
     {
-        if (Providers.Has<EntityProvider>() == false)
-            return;
-
         var healthBarComponent = Providers.Get<HealthBarProvider>().component;
         var entity = Providers.Get<EntityProvider>().component.entity;
 

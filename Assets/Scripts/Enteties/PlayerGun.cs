@@ -1,6 +1,13 @@
-﻿public class PlayerGun : Entity
+﻿using Lefrut.Framework;
+
+public class PlayerGun : Facade
 {
-    protected override void Initialize()
+    protected override void InitData()
+    {
+        AddData(new GunDamageSystem());
+    }
+
+    protected override void InitSystems()
     {
         AddSystem(new GunDamageSystem());
     }

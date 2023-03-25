@@ -4,14 +4,14 @@ public interface IInventory
 {
     int Capacity { get; set; }
 
-    IInventoryItem GetItem(long itemID);
-    IInventoryItem[] GetAllItems();
-    IInventoryItem[] GetAllItems(long itemID);
-    IInventoryItem[] GetEquippedItems();
+    InventoryItem GetItem(long itemID);
+    InventoryItem[] GetAllItems();
+    InventoryItem[] GetAllItems(long itemID);
+    InventoryItem[] GetEquippedItems();
     int GetItemCount(long itmeID);
 
-    void AddItem(object sender, IInventoryItem item);
+    void AddItem(object sender, InventoryItem item);
     bool TryRemove(object sender, long itemID, int count = 1);
-    bool TryGetItem(long ID, out IInventoryItem item);
+    bool TryGetItem(long ID, out InventoryItem item);
     IInventorySlot[] GetAllSlots();
 }

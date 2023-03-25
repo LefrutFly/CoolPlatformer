@@ -1,7 +1,8 @@
-﻿using UnityEngine;
+﻿using Lefrut.Framework;
+using UnityEngine;
 
 [System.Serializable]
-public class PlayerJumpComponent
+public class PlayerJumpComponent : IData
 {
     [SerializeField] public float jumpForce;
 }

@@ -1,17 +1,20 @@
-﻿using UnityEngine;
+﻿using Lefrut.Framework;
+using UnityEngine;
 
 public class PlayerJumpSystem : BaseSystem, IEnableSystem, IDisableSystem
 {
+    public override void AddProviders()
+    {
+        NeededProviders.Set(new EntityProvider(), this);
+        NeededProviders.Set(new PlayerJumpProvider(), this);
+        NeededProviders.Set(new PointCheckerProvider(), this);
+    }
+
     public void Enable()
     {
         if (IsActive == false) return;
 
-        if (Providers.Has<EntityProvider>() == false ||
-            Providers.Has<PlayerJumpProvider>() == false ||
-            Providers.Has<PointCheckerProvider>() == false)
-            return;
-
-        Player player = Actor as Player;
+        Player player = Facade as Player;
 
         player.inputs.Player.Jump.performed += context => Jump();
     }
@@ -25,7 +28,7 @@ public class PlayerJumpSystem : BaseSystem, IEnableSystem, IDisableSystem
             Providers.Has<PointCheckerProvider>() == false)
             return;
 
-        Player player = Actor as Player;
+        Player player = Facade as Player;
 
         player.inputs.Player.Jump.performed -= context => Jump();
     }

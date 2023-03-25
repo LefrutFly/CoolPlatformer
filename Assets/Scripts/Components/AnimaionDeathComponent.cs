@@ -1,7 +1,8 @@
-﻿using UnityEngine;
+﻿using Lefrut.Framework;
+using UnityEngine;
 
 [System.Serializable]
-public class AnimaionDeathComponent
+public class AnimaionDeathComponent : IData
 {
     public GameObject prefab;
     public Transform spawnPoint;

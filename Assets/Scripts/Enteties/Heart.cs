@@ -1,9 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
+using Lefrut.Framework;
 
-public class Heart : Entity
+public class Heart : Facade
 {
-    protected override void Initialize()
+    protected override void InitData()
+    {
+        AddData(new PlusHealthSystem());
+    }
+
+    protected override void InitSystems()
     {
         AddSystem(new PlusHealthSystem());
     }

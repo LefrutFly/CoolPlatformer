@@ -1,17 +1,23 @@
-﻿using System.Collections;
+﻿using Lefrut.Framework;
+using System.Collections;
 using UnityEngine;
 
 public class PlayerSpawnerSystem : BaseSystem, IStartableSystem, IUpdatableSystem
 {
     private Coroutine spawnPlayer;
     private PlayerSpawnerComponent playerSpawnerComponent;
+    private GlobalSystemStorage globalSystemStorage;
+
+    public override void AddProviders()
+    {
+        NeededProviders.Set(new PlayerSpawnerProvider(), this);
+    }
 
     public void Start()
     {
         if (IsActive == false) return;
 
-        if (Providers.Has<PlayerSpawnerProvider>() == false)
-            return;
+        globalSystemStorage = GlobalSystemStorage.GetInstance();
 
         playerSpawnerComponent = Providers.Get<PlayerSpawnerProvider>().component;
 
@@ -90,7 +96,7 @@ public class PlayerSpawnerSystem : BaseSystem, IStartableSystem, IUpdatableSyste
             {
                 var player = Providers.Get<PlayerSpawnerProvider>().component.player;
 
-                if (player.GetComponent<Player>().Systems.TryGet(out AnimationDeathSystem animaionDeath))
+                if (globalSystemStorage.Systems[player.Index].TryGet(out AnimationDeathSystem animaionDeath))
                 {
                     animaionDeath.Die();
                 }
@@ -100,7 +106,7 @@ public class PlayerSpawnerSystem : BaseSystem, IStartableSystem, IUpdatableSyste
         {
             var player = Providers.Get<PlayerSpawnerProvider>().component.player;
 
-            if (player.GetComponent<Player>().Systems.TryGet(out AnimationDeathSystem animaionDeath))
+            if (globalSystemStorage.Systems[player.Index].TryGet(out AnimationDeathSystem animaionDeath))
             {
                 animaionDeath.Die();
             }
@@ -169,23 +175,23 @@ public class PlayerSpawnerSystem : BaseSystem, IStartableSystem, IUpdatableSyste
 
     private void EnableControlPlayer(Player player, bool enable)
     {
-        if (player.Systems.TryGet(out PlayerMoveSystem moveSystem))
+        if (globalSystemStorage.Systems[player.Index].TryGet(out PlayerMoveSystem moveSystem))
         {
             moveSystem.IsActive = enable;
         }
-        if (player.Systems.TryGet(out PlayerJumpSystem jumpSystem))
+        if (globalSystemStorage.Systems[player.Index].TryGet(out PlayerJumpSystem jumpSystem))
         {
             jumpSystem.IsActive = enable;
         }
-        if (player.Systems.TryGet(out PlayerAttackSystem attackSystem))
+        if (globalSystemStorage.Systems[player.Index].TryGet(out PlayerAttackSystem attackSystem))
         {
             attackSystem.IsActive = enable;
         }
-        if (player.Systems.TryGet(out PlayerGunSystem gunSystem))
+        if (globalSystemStorage.Systems[player.Index].TryGet(out PlayerGunSystem gunSystem))
         {
             gunSystem.IsActive = enable;
         }
-        if(player.Systems.TryGet(out ShiftAbilitySystem shiftAbility))
+        if (globalSystemStorage.Systems[player.Index].TryGet(out ShiftAbilitySystem shiftAbility))
         {
             shiftAbility.IsActive = enable;
         }

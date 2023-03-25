@@ -1,20 +1,23 @@
-﻿using UnityEngine;
+﻿using Lefrut.Framework;
+using UnityEngine;
 
 public class RotationAroundSystem : BaseSystem, IUpdatableSystem
 {
+    public override void AddProviders()
+    {
+        NeededProviders.Set(new RotatableProvider(), this);
+        NeededProviders.Set(new EntityProvider(), this);
+    }
+
     public void Update()
     {
-        if (Providers.Has<RotatableProvider>() == false ||
-            Providers.Has<EntityProvider>() == false)
-            return;
-
         var rotatableComponent = Providers.Get<RotatableProvider>().component;
         var entity = Providers.Get<EntityProvider>().component.entity;
 
         Rotate(entity, rotatableComponent);
     }
 
-    private void Rotate(Entity entity, RotatableComponent rotatableComponent)
+    private void Rotate(Facade entity, RotatableComponent rotatableComponent)
     {
         float speed = rotatableComponent.rotationalSpeed;
 

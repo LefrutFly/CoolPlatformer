@@ -1,14 +1,19 @@
-﻿using UnityEngine;
+﻿using Lefrut.Framework;
+using UnityEngine;
 
-public class GunDamageSystem : BaseSystem, ITriggableSystem
+public class GunDamageSystem : BaseSystem, ITriggerableSystem
 {
+    public override void AddProviders()
+    {
+        NeededProviders.Set(new GunDamageProvider(), this);
+        NeededProviders.Set(new Collider2DProvider(), this);
+    }
+
     public void TriggetEnter(Collider2D collision)
     {
-        if(Providers.Has<GunDamageProvider>() == false) return;
-
         var damage = Providers.Get<GunDamageProvider>().component.damage;
 
-        if (collision.TryGetComponent(out Entity entity))
+        if (collision.TryGetComponent(out Facade entity))
         {
             if(entity.Providers.TryGet(out HealthProvider healthProvider))
             {

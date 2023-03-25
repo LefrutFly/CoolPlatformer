@@ -1,17 +1,22 @@
-﻿using System.Collections;
+﻿using Lefrut.Framework;
+using System.Collections;
 using UnityEngine;
 
-public class PeriodicTriggerDamageSystem : BaseSystem, ITriggableSystem
+public class PeriodicTriggerDamageSystem : BaseSystem, ITriggerableSystem
 {
     private Coroutine damage;
 
+
+    public override void AddProviders()
+    {
+        NeededProviders.Set(new PeriodicTriggerDamageProvider(), this);
+    }
+
     public void TriggetEnter(Collider2D collision)
     {
-        if (Providers.Has<PeriodicTriggerDamageProvider>() == false) return;
-
         ref var periodicTriggerDamageComponent = ref Providers.Get<PeriodicTriggerDamageProvider>().component;
 
-        if (collision.TryGetComponent(out Entity entity))
+        if (collision.TryGetComponent(out Facade entity))
         {
             if (damage == null)
             {
@@ -22,9 +27,7 @@ public class PeriodicTriggerDamageSystem : BaseSystem, ITriggableSystem
 
     public void TriggetExit(Collider2D collision)
     {
-        if (Providers.Has<PeriodicTriggerDamageProvider>() == false) return;
-
-        if (collision.TryGetComponent(out Entity entity))
+        if (collision.TryGetComponent(out Facade entity))
         {
             if (damage != null)
             {
@@ -36,7 +39,7 @@ public class PeriodicTriggerDamageSystem : BaseSystem, ITriggableSystem
 
     public void TriggetStay(Collider2D collision) { }
 
-    private IEnumerator TakeDamage(Entity entity, PeriodicTriggerDamageComponent component)
+    private IEnumerator TakeDamage(Facade entity, PeriodicTriggerDamageComponent component)
     {
         var damage = component.damage;
         var cooldown = component.cooldown;

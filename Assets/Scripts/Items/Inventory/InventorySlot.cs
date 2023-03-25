@@ -3,14 +3,14 @@
 public class InventorySlot : IInventorySlot
 {
     public bool IsEmpty => Item == null;
-    public IInventoryItem Item => item;
+    public InventoryItem Item => item;
     public long ItemID => Item.ID;
     public int Count => IsEmpty ? 0 : Item.Count;
 
-    private IInventoryItem item;
+    private InventoryItem item;
 
 
-    public void SetItem(IInventoryItem item)
+    public void SetItem(InventoryItem item)
     {
         if (!IsEmpty) return;
 

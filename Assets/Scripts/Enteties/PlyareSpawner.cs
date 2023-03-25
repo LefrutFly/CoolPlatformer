@@ -1,6 +1,13 @@
-public class PlyareSpawner : Entity
+using Lefrut.Framework;
+
+public class PlyareSpawner : Facade
 {
-    protected override void Initialize()
+    protected override void InitData()
+    {
+        AddData(new PlayerSpawnerSystem());
+    }
+
+    protected override void InitSystems()
     {
         GameLinks.AddLink(this);
 

@@ -1,11 +1,15 @@
-﻿using UnityEngine;
+﻿using Lefrut.Framework;
+using UnityEngine;
 
 public class PointCheckerSystem : BaseSystem, IUpdatableSystem
 {
+    public override void AddProviders()
+    {
+        NeededProviders.Set(new PointCheckerProvider(), this);
+    }
+
     public void Update()
     {
-        if (Providers.Has<PointCheckerProvider>() == false) return;
-
         var pointCheckerComponent = Providers.Get<PointCheckerProvider>().component;
 
         var left = IsLeft();
