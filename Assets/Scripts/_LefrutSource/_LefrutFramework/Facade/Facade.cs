@@ -287,10 +287,15 @@ namespace Lefrut.Framework
             globalSystemStorage.RemoveSystem(index, system);
         }
 
-        protected void AddData(BaseSystem system)
+        protected void AddDataFromSystem(BaseSystem system)
         {
             system.AddProviders();
             NeededProviders.AddPropertyElements(system.NeededProviders);
+        }
+
+        protected void AddNewDataProvider(MonoProvider monoProvider)
+        {
+            NeededProviders.Set(monoProvider);
         }
 
         protected abstract void InitSystems();

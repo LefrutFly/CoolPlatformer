@@ -4,7 +4,7 @@ public class PlyareSpawner : Facade
 {
     protected override void InitData()
     {
-        AddData(new PlayerSpawnerSystem());
+        AddDataFromSystem(new PlayerSpawnerSystem());
     }
 
     protected override void InitSystems()

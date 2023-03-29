@@ -4,7 +4,7 @@ public class ManaBar : Facade
 {
     protected override void InitData()
     {
-        AddData(new ManaBarSystem());
+        AddDataFromSystem(new ManaBarSystem());
     }
 
     protected override void InitSystems()

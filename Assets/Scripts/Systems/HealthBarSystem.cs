@@ -45,13 +45,25 @@ public class HealthBarSystem : BaseSystem, IStartableSystem, IDisableSystem
 
     private void ChangeBar(float health)
     {
-         var healthBarComponent =  Providers.Get<HealthBarProvider>().component;
+        var healthBarComponent = Providers.Get<HealthBarProvider>().component;
 
-         var text =  healthBarComponent.text;
-         var animator =  healthBarComponent.animator;
-         var nameAnimationTrigger =  healthBarComponent.nameAnimationTrigger;
+        var text = healthBarComponent.text;
+        var animator = healthBarComponent.animator;
+        var nameAnimationTrigger = healthBarComponent.nameAnimationTrigger;
 
         text.text = "HP : " + health;
         animator.SetTrigger(nameAnimationTrigger);
+
+        if (health <= 0)
+        {
+            var newColor = text.color;
+
+            newColor.r *= 0.55f;
+            newColor.g *= 0.55f;
+            newColor.b *= 0.55f;
+            newColor.a = 0.8f;
+
+            text.color = newColor;
+        }
     }
 }

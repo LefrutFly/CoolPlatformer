@@ -9,17 +9,20 @@ public class Player : Facade
 
     protected override void InitData()
     {
-        AddData(new PointCheckerSystem());
-        AddData(new PlayerMoveSystem());
-        AddData(new PlayerJumpSystem());
-        AddData(new PlayerAttackSystem());
-        AddData(new PlayerGunSystem());
-        AddData(new ShiftAbilitySystem());
-        AddData(new HighlightDamageSystem());
-        AddData(new StuckInGroundSystem());
+        AddDataFromSystem(new PointCheckerSystem());
+        AddDataFromSystem(new PlayerMoveSystem());
+        AddDataFromSystem(new PlayerJumpSystem());
+        AddDataFromSystem(new PlayerAttackSystem());
+        AddDataFromSystem(new PlayerGunSystem());
+        AddDataFromSystem(new ShiftAbilitySystem());
+        AddDataFromSystem(new HighlightDamageSystem());
+        AddDataFromSystem(new StuckInGroundSystem());
 
-        AddData(new AnimationDeathSystem());
-        AddData(new DisableDeathSystem());
+        AddDataFromSystem(new AnimationDeathSystem());
+        AddDataFromSystem(new DisableDeathSystem());
+
+        AddNewDataProvider(new HealthProvider());
+        AddNewDataProvider(new ManaProvider());
     }
 
     protected override void InitSystems()

@@ -2,14 +2,14 @@
 {
     protected override void InitData()
     {
-        AddData(new PointCheckerSystem());
-        AddData(new PatrolFromWallToWallSystem());
-        AddData(new NipperPossibleToAttackSystem());
-        AddData(new AttackSystem<EnemyTag>());
-        AddData(new HighlightDamageSystem());
+        AddDataFromSystem(new PointCheckerSystem());
+        AddDataFromSystem(new PatrolFromWallToWallSystem());
+        AddDataFromSystem(new NipperPossibleToAttackSystem());
+        AddDataFromSystem(new AttackSystem<EnemyTag>());
+        AddDataFromSystem(new HighlightDamageSystem());
 
-        AddData(new AnimationDeathSystem());
-        AddData(new DestroyDeathSystem());
+        AddDataFromSystem(new AnimationDeathSystem());
+        AddDataFromSystem(new DestroyDeathSystem());
     }
 
     protected override void InitSystems()

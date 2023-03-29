@@ -4,7 +4,7 @@ public class HealthBar : Facade
 {
     protected override void InitData()
     {
-        AddData(new HealthBarSystem());
+        AddDataFromSystem(new HealthBarSystem());
     }
 
     protected override void InitSystems()

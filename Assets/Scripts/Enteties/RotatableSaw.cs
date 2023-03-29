@@ -5,8 +5,8 @@ public class RotatableSaw : TrapTag
 {
     protected override void InitData()
     {
-        AddData(new RotationAroundSystem());
-        AddData(new PeriodicTriggerDamageSystem());
+        AddDataFromSystem(new RotationAroundSystem());
+        AddDataFromSystem(new PeriodicTriggerDamageSystem());
     }
 
     protected override void InitSystems()

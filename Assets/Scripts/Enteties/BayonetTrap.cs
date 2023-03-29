@@ -2,8 +2,8 @@ public class BayonetTrap : TrapTag
 {
     protected override void InitData()
     {
-        AddData(new BayonetTrapPossibleToAttackSystem());
-        AddData(new AttackSystem<EnemyTag>());
+        AddDataFromSystem(new BayonetTrapPossibleToAttackSystem());
+        AddDataFromSystem(new AttackSystem<EnemyTag>());
     }
 
     protected override void InitSystems()

@@ -4,8 +4,8 @@ public class DestractableBox : Facade
 {
     protected override void InitData()
     {
-        AddData(new AnimationDeathSystem());
-        AddData(new DisableDeathSystem());
+        AddDataFromSystem(new AnimationDeathSystem());
+        AddDataFromSystem(new DisableDeathSystem());
     }
 
     protected override void InitSystems()

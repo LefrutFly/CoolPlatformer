@@ -12,6 +12,7 @@ public class PlayerGunSystem : BaseSystem, IUpdatableSystem, IStartableSystem
     public override void AddProviders()
     {
         NeededProviders.Set(new PlayerGunProvider(), this);
+        NeededProviders.Set(new DirectionProvider(), this);
     }
 
     public void Start()
@@ -162,8 +163,6 @@ public class PlayerGunSystem : BaseSystem, IUpdatableSystem, IStartableSystem
 
     private void RotateGun(PlayerGunComponent gunComponent)
     {
-        if (Providers.Has<DirectionProvider>() == false) return;
-
         var direction = Providers.Get<DirectionProvider>().component.direction;
 
         if (direction.x > 0)

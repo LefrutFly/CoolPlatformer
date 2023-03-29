@@ -4,7 +4,7 @@ public class Heart : Facade
 {
     protected override void InitData()
     {
-        AddData(new PlusHealthSystem());
+        AddDataFromSystem(new PlusHealthSystem());
     }
 
     protected override void InitSystems()

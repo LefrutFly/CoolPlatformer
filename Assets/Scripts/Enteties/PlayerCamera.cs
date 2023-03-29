@@ -6,7 +6,7 @@ public class PlayerCamera : Facade
 {
     protected override void InitData()
     {
-        AddData(new CameraFollowPlayer());
+        AddDataFromSystem(new CameraFollowPlayer());
     }
 
     protected override void InitSystems()

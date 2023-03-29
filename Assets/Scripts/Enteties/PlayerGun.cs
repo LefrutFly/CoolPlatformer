@@ -4,7 +4,7 @@ public class PlayerGun : Facade
 {
     protected override void InitData()
     {
-        AddData(new GunDamageSystem());
+        AddDataFromSystem(new GunDamageSystem());
     }
 
     protected override void InitSystems()

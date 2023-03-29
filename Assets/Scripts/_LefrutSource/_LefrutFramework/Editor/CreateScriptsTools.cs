@@ -8,7 +8,7 @@ namespace Lefrut
     {
         enum TypeOfScript
         {
-            Entity,
+            Facade,
             System,
             DataWithProvider,
             Effect,
@@ -52,9 +52,9 @@ namespace Lefrut
 
         private void CreateFile()
         {
-            if (type == TypeOfScript.Entity)
+            if (type == TypeOfScript.Facade)
             {
-                CreateEntityClass();
+                CreateFacadeClass();
             }
             else if (type == TypeOfScript.System)
             {
@@ -70,7 +70,7 @@ namespace Lefrut
             }
         }
 
-        private void CreateEntityClass()
+        private void CreateFacadeClass()
         {
             fullPath = path + "/" + className + ".cs";
 
@@ -80,14 +80,15 @@ namespace Lefrut
                 {
                     sw.WriteLine("using Lefrut.Framework;");
                     sw.WriteLine();
-                    sw.WriteLine($"public class {className} : Entity");
+                    sw.WriteLine($"public class {className} : Facade");
                     sw.WriteLine("{");
                     sw.WriteLine("\t//public SYSTEM_TYPE NAME { get; private set; } = new SYSTEM_TYPE();");
                     sw.WriteLine();
                     sw.WriteLine();
                     sw.WriteLine("\tprotected override void InitData()");
                     sw.WriteLine("\t{");
-                    sw.WriteLine("\t\t//AddData(NAME);");
+                    sw.WriteLine("\t\t//AddDataFromSystem(SYSTEM_NAME);");
+                    sw.WriteLine("\t\t//AddNewDataProvider(PROVIDER_NAME);");
                     sw.WriteLine("\t}");
                     sw.WriteLine();
                     sw.WriteLine("\tprotected override void InitSystems()");
@@ -155,6 +156,7 @@ namespace Lefrut
                 {
                     sw.WriteLine("using Lefrut.Framework;");
                     sw.WriteLine();
+                    sw.WriteLine($"[System.Serializable]");
                     sw.WriteLine($"public class {className}Data : IData");
                     sw.WriteLine("{");
                     sw.WriteLine("\t//public TYPE NAME;");

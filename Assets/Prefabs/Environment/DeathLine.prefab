@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6611884487676301429}
   - component: {fileID: 6611884487676301428}
   - component: {fileID: 6611884487676301424}
+  - component: {fileID: 7087154183331253109}
   m_Layer: 0
   m_Name: DeathLine
   m_TagString: Untagged
@@ -30,6 +31,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -11.2, y: -25.3, z: -3.711395}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -93,8 +95,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09d28694b4dd9c94da2a7cd1e0bbf059, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  providersList:
+  monoProvidersOnFacade:
   - {fileID: 6611884487676301424}
+  index: 0
 --- !u!114 &6611884487676301424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -107,6 +110,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06e764581a297354f8cf309da0fcf3c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Facade: {fileID: 0}
   component:
     damage: 100000
     cooldown: 1
+--- !u!114 &7087154183331253109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6611884487676301419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 970d2067f2da2154b9c1dae4cd9d0952, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
