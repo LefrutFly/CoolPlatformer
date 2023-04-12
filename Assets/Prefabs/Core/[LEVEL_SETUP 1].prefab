@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1690450270313988592}
   - component: {fileID: 1690450270313988593}
   m_Layer: 0
-  m_Name: Coroutines
+  m_Name: '[Coroutines]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3568,6 +3568,10 @@ PrefabInstance:
       propertyPath: m_CameraType
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1601334308018158593, guid: fa555e3fe5983ab41930f88425780367, type: 3}
+      propertyPath: orthographic size
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 1601334308018158594, guid: fa555e3fe5983ab41930f88425780367, type: 3}
       propertyPath: m_Name
       value: Main Camera
@@ -3582,11 +3586,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1601334308018158846, guid: fa555e3fe5983ab41930f88425780367, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.000001
+      value: -7.999999
       objectReference: {fileID: 0}
     - target: {fileID: 1601334308018158846, guid: fa555e3fe5983ab41930f88425780367, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.77000046
+      value: 6.6499996
       objectReference: {fileID: 0}
     - target: {fileID: 1601334308018158846, guid: fa555e3fe5983ab41930f88425780367, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3634,6 +3638,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7696478853205515736, guid: fa555e3fe5983ab41930f88425780367, type: 3}
       propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7696478853205515736, guid: fa555e3fe5983ab41930f88425780367, type: 3}
+      propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

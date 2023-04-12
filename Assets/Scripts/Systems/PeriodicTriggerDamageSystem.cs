@@ -16,18 +16,18 @@ public class PeriodicTriggerDamageSystem : BaseSystem, ITriggerableSystem
     {
         ref var periodicTriggerDamageComponent = ref Providers.Get<PeriodicTriggerDamageProvider>().component;
 
-        if (collision.TryGetComponent(out Facade entity))
+        if (collision.TryGetComponent(out Player player))
         {
             if (damage == null)
             {
-                damage = Coroutines.Start(TakeDamage(entity, periodicTriggerDamageComponent));
+                damage = Coroutines.Start(TakeDamage(player, periodicTriggerDamageComponent));
             }
         }
     }
 
     public void TriggetExit(Collider2D collision)
     {
-        if (collision.TryGetComponent(out Facade entity))
+        if (collision.TryGetComponent(out Player player))
         {
             if (damage != null)
             {

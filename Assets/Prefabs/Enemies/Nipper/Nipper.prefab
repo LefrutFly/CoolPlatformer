@@ -761,6 +761,22 @@ PrefabInstance:
       propertyPath: component.entity
       value: 
       objectReference: {fileID: 5452556520251138784}
+    - target: {fileID: 7795882614042042937, guid: fbdbb7a03d0ee634c9befbda49fbf88b, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7795882614042042937, guid: fbdbb7a03d0ee634c9befbda49fbf88b, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7795882614042042937, guid: fbdbb7a03d0ee634c9befbda49fbf88b, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7795882614042042937, guid: fbdbb7a03d0ee634c9befbda49fbf88b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fbdbb7a03d0ee634c9befbda49fbf88b, type: 3}
 --- !u!4 &7980193292237097726 stripped

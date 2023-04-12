@@ -1,13 +1,18 @@
+using DG.Tweening;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class StartMenu : MonoBehaviour
 {
-    [SerializeField] private string sceneName;
+    [SerializeField] private Camera camera;
+    [SerializeField] private Transform pointLevelsMenu;
+    [SerializeField] private float durationToLevelsMenu;
+
 
     public void Play()
     {
-        SceneManager.LoadScene(sceneName);
+        var vector = pointLevelsMenu.transform.position;
+
+        camera.transform.DOMoveY(vector.y, durationToLevelsMenu);
     }
 
     public void Exit()

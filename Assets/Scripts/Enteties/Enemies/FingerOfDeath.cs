@@ -1,21 +1,20 @@
 using Lefrut.Framework;
 
-public class FingerOfDeath : Facade
+public class FingerOfDeath : EnemyTag
 {
-	public AnimatorDeathSystem AnimatorDeathSystem { get; private set; } = new AnimatorDeathSystem();
-
-	public HealthProvider HealthProvider { get; private set; } = new HealthProvider();
-
-
     protected override void InitData()
 	{
-        AddDataFromSystem(AnimatorDeathSystem);
+        AddDataFromSystem(new AnimatorDeathSystem());
+		AddDataFromSystem(new FingerOfDeathVisionSystem());
+		AddDataFromSystem(new FingerOfDeathAttackSystem());
 
-        AddNewDataProvider(HealthProvider);
+        AddNewDataProvider(new HealthProvider());
 	}
 
 	protected override void InitSystems()
 	{
-		AddSystem(AnimatorDeathSystem);
+		AddSystem(new AnimatorDeathSystem());
+		AddSystem(new FingerOfDeathVisionSystem());
+		AddSystem(new FingerOfDeathAttackSystem());
 	}
 }
