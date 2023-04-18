@@ -3,9 +3,9 @@
 [Serializable]
 public class UserData
 {
-    public string Username { get; set; }
-    public string Email { get; set; }
-    public string Password { get; set; }
+    public string Username;
+    public string Email;
+    public string Password;
 
 
     public UserData(string username, string email, string password)

@@ -1,13 +1,12 @@
-﻿using TMPro;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using Newtonsoft.Json;
 using Proyecto26;
 using System;
 using System.Collections.Generic;
-using Newtonsoft.Json;
-using static UnityEditor.ShaderData;
-using static System.Net.Mime.MediaTypeNames;
-
+using TMPro;
+using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.UI;
+using static UnityEditor.PlayerSettings;
 
 public class LoginMenu : MonoBehaviour
 {
@@ -39,7 +38,7 @@ public class LoginMenu : MonoBehaviour
         openSignUpMenuButton.onClick.AddListener(OpenSignUpMenu);
         openSignInMenuButton.onClick.AddListener(OpenSignInMenu);
         loginButton.onClick.AddListener(SignIn);
-        registrButton.onClick.AddListener(SignUp); 
+        registrButton.onClick.AddListener(SignUp);
     }
 
     private void OnDisable()
@@ -88,10 +87,22 @@ public class LoginMenu : MonoBehaviour
         errorText.text = "";
     }
 
+    private void CloseMenu()
+    {
+        startMenu.SetActive(true);
+        signInMenu.SetActive(false);
+        signUpMenu.SetActive(false);
+        signInEmail.text = "";
+        signInPassword.text = "";
+        signUpLogin.text = "";
+        signUpEmail.text = "";
+        signUpPassword.text = "";
+        errorText.text = "";
+        gameObject.SetActive(false);
+    }
 
     private void SignIn()
     {
-        Debug.Log("1");
         string email = signInEmail.text;
         string password = signInPassword.text;
 
@@ -100,7 +111,6 @@ public class LoginMenu : MonoBehaviour
 
     private void SignIn(string email, string password)
     {
-        Debug.Log("2");
         errorText.text = "Search Account...";
         errorText.color = Color.white;
 
@@ -113,15 +123,17 @@ public class LoginMenu : MonoBehaviour
             );
     }
 
-    private void SignInCallback(RequestException exception, ResponseHelper helper, AuthData data)
+    private void SignInCallback(RequestException exception, ResponseHelper response, AuthData data)
     {
         try
         {
-            Debug.Log("3");
             errorText.text = "Account Initialised";
             errorText.color = Color.green;
 
-            GetUserByEmail(data.Email);
+            var verifyPasswordResponse = JsonConvert.DeserializeObject<dynamic>(response.Text);
+            string email = verifyPasswordResponse.email;
+
+            GetUserByEmail(email);
         }
         catch (Exception ex)
         {
@@ -132,30 +144,26 @@ public class LoginMenu : MonoBehaviour
 
     private void GetUserByEmail(string email)
     {
-        Debug.Log("4");
-        DataBase.FindUserByEmail(email, GetUserByEmail);
+        DataBase.FindUserByEmail(email, GetUserByEmail); ;
     }
 
-    private void GetUserByEmail(RequestException exception, ResponseHelper helper)
+    private void GetUserByEmail(RequestException exception, ResponseHelper response)
     {
         try
         {
-            Debug.Log("5");
-            Debug.Log(helper.Text);
-            Dictionary<string, UserData> dict = JsonConvert.DeserializeObject<Dictionary<string, UserData>>(helper.Text);
+            Debug.Log(response.Text);//{}
+            Dictionary<string, UserData> dict = JsonConvert.DeserializeObject<Dictionary<string, UserData>>(response.Text);
 
             foreach (KeyValuePair<string, UserData> kvp in dict)
             {
-                Debug.Log("6");
                 var data = kvp.Value;
-                Debug.Log(data);
-
-                break;
+                CloseMenu();
+                return;
             }
         }
-        catch (Exception ex)
+        catch
         {
-            Debug.Log("User Data not Loaded!" + "\n" + ex.ToString());
+            Debug.Log("User Data not Loaded!");
         }
     }
 
@@ -178,7 +186,7 @@ public class LoginMenu : MonoBehaviour
         }
     }
 
-    private void GetUserByLoginCallback(RequestException exception, ResponseHelper helper, UserData userData)
+    private void GetUserByLoginCallback(RequestException exception, ResponseHelper response, UserData userData)
     {
         if (userData == null)
         {
@@ -207,7 +215,7 @@ public class LoginMenu : MonoBehaviour
         }
     }
 
-    private void SignUpcallback(RequestException exception, ResponseHelper helper, AuthData data)
+    private void SignUpcallback(RequestException exception, ResponseHelper response, AuthData data)
     {
         try
         {
