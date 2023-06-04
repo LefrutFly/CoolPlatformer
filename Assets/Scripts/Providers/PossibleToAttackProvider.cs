@@ -1,6 +1,6 @@
 ﻿using Lefrut.Framework;
 
-public class PossibleToAttackProvider : MonoProvider
+public class PossibleToAttackProvider : IProvider
 {
     public PossibleToAttackComponent component = new PossibleToAttackComponent();
 

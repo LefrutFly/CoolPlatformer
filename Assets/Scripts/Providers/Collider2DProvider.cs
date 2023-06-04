@@ -1,6 +1,6 @@
 ﻿using Lefrut.Framework;
 
-public class Collider2DProvider : MonoProvider
+public class Collider2DProvider : IProvider
 {
     public Collider2DComponent component;
 

@@ -1,6 +1,6 @@
 ﻿using Lefrut.Framework;
 
-public class CameraShiftProvider : MonoProvider
+public class CameraShiftProvider : IProvider
 {
     public CameraShiftComponent component;
 

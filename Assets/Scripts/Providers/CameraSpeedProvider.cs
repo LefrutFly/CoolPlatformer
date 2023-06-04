@@ -1,6 +1,6 @@
 ﻿using Lefrut.Framework;
 
-public class CameraSpeedProvider : MonoProvider
+public class CameraSpeedProvider : IProvider
 {
     public CameraSpeedComponent component;
 

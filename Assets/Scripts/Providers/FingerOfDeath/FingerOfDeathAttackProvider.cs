@@ -1,7 +1,7 @@
 ﻿using Lefrut.Framework;
 using UnityEngine;
 
-public class FingerOfDeathAttackProvider : MonoProvider
+public class FingerOfDeathAttackProvider : IProvider
 {
     [SerializeField] protected FingerOfDeathAttackData data;
 

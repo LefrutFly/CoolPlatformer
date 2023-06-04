@@ -1,6 +1,6 @@
 ﻿using Lefrut.Framework;
 
-public class ShiftAbilityProvider : MonoProvider
+public class ShiftAbilityProvider : IProvider
 {
     public ShiftAbilityComponent component;
 

@@ -1,6 +1,6 @@
 ﻿using Lefrut.Framework;
 
-public class MoveSpeedProvider : MonoProvider
+public class MoveSpeedProvider : IProvider
 {
     public MoveSpeedComponent component;
 

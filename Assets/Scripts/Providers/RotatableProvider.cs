@@ -1,6 +1,6 @@
 ﻿using Lefrut.Framework;
 
-public class RotatableProvider : MonoProvider
+public class RotatableProvider : IProvider
 {
     public RotatableComponent component;
 

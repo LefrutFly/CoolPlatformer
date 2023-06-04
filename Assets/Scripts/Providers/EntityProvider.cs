@@ -1,6 +1,6 @@
 ﻿using Lefrut.Framework;
 
-public class EntityProvider : MonoProvider
+public class EntityProvider : IProvider
 {
     public EntityComponent component;
 

@@ -1,6 +1,6 @@
 ﻿using Lefrut.Framework;
 
-public class DirectionProvider : MonoProvider
+public class DirectionProvider : IProvider
 {
     public DirectionComponent component;
 

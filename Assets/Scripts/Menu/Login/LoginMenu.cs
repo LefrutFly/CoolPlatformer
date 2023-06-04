@@ -4,9 +4,8 @@ using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.UI;
-using static UnityEditor.PlayerSettings;
+
 
 public class LoginMenu : MonoBehaviour
 {
@@ -35,6 +34,15 @@ public class LoginMenu : MonoBehaviour
 
     private void OnEnable()
     {
+        if (DataBase.isFirstOpen)
+        {
+            DataBase.isFirstOpen = false;
+        }
+        else
+        {
+            gameObject.SetActive(false);
+        }
+
         openSignUpMenuButton.onClick.AddListener(OpenSignUpMenu);
         openSignInMenuButton.onClick.AddListener(OpenSignInMenu);
         loginButton.onClick.AddListener(SignIn);
@@ -144,19 +152,21 @@ public class LoginMenu : MonoBehaviour
 
     private void GetUserByEmail(string email)
     {
-        DataBase.FindUserByEmail(email, GetUserByEmail); ;
+        DataBase.GetUserDataByEmail(email, GetUserByEmail); ;
     }
 
     private void GetUserByEmail(RequestException exception, ResponseHelper response)
     {
         try
         {
-            Debug.Log(response.Text);//{}
             Dictionary<string, UserData> dict = JsonConvert.DeserializeObject<Dictionary<string, UserData>>(response.Text);
 
             foreach (KeyValuePair<string, UserData> kvp in dict)
             {
                 var data = kvp.Value;
+
+                DataBase.LoadedUserData = data;
+
                 CloseMenu();
                 return;
             }
@@ -182,7 +192,7 @@ public class LoginMenu : MonoBehaviour
 
         if (!IsLoginEmpty && !IsLoginEmpty && !IsPasswordEmpty)
         {
-            DataBase.GetUserByLogin(login, GetUserByLoginCallback);
+            DataBase.GetUserDataByLogin(login, GetUserByLoginCallback);
         }
     }
 
@@ -226,7 +236,7 @@ public class LoginMenu : MonoBehaviour
             errorText.text = "Account created!";
             errorText.color = Color.green;
 
-            var userData = new UserData(login, email, password);
+            var userData = new UserData(login, email, password, 0);
 
             DataBase.SendToDataBase(userData, login);
         }

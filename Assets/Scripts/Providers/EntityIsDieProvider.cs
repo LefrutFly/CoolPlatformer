@@ -1,6 +1,6 @@
 ﻿using Lefrut.Framework;
 
-public class EntityIsDieProvider : MonoProvider
+public class EntityIsDieProvider : IProvider
 {
     public EntityIsDieComponent component;
 

@@ -1,6 +1,6 @@
 ﻿using Lefrut.Framework;
 
-public class ManaProvider : MonoProvider
+public class ManaProvider : IProvider
 {
     public ManaComponent component;
 

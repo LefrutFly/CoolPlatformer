@@ -8,16 +8,16 @@ namespace Lefrut.Framework
     [RequireComponent(typeof(EntityUpdatesAdder))]
     public abstract class Facade : MonoBehaviour, IRun
     {
-        [SerializeField] private List<MonoProvider> monoProvidersOnFacade = new List<MonoProvider>();
+        [SerializeField] private List<IProvider> monoProvidersOnFacade = new List<IProvider>();
         [SerializeField] private int index;
 
-        public List<MonoProvider> MonoProvidersOnFacade => monoProvidersOnFacade;
-        public Property<MonoProvider> Providers => providers;
-        public Property<MonoProvider> NeededProviders => neededProviders;
+        public List<IProvider> MonoProvidersOnFacade => monoProvidersOnFacade;
+        public Property<IProvider> Providers => providers;
+        public Property<IProvider> NeededProviders => neededProviders;
         public int Index => index;
 
-        private Property<MonoProvider> providers = new Property<MonoProvider>();
-        private Property<MonoProvider> neededProviders = new Property<MonoProvider>();
+        private Property<IProvider> providers = new Property<IProvider>();
+        private Property<IProvider> neededProviders = new Property<IProvider>();
         private List<IEffect> allActiveEffects = new List<IEffect>();
 
         protected GlobalSystemStorage globalSystemStorage;
@@ -46,7 +46,7 @@ namespace Lefrut.Framework
                     continue;
                 }
 
-                var addedProvider = gameObject.AddComponent(item.GetType()) as MonoProvider;
+                var addedProvider = gameObject.AddComponent(item.GetType()) as IProvider;
                 addedProvider.Facade = this;
 
                 monoProvidersOnFacade.Add(addedProvider);
@@ -293,7 +293,7 @@ namespace Lefrut.Framework
             NeededProviders.AddPropertyElements(system.NeededProviders);
         }
 
-        protected void AddNewDataProvider(MonoProvider monoProvider)
+        protected void AddNewDataProvider(IProvider monoProvider)
         {
             NeededProviders.Set(monoProvider);
         }

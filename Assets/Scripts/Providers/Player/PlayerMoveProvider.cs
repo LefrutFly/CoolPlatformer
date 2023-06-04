@@ -1,6 +1,6 @@
 ﻿using Lefrut.Framework;
 
-public class PlayerMoveProvider : MonoProvider 
+public class PlayerMoveProvider : IProvider 
 {
     public PlayerMoveComponent component;
 

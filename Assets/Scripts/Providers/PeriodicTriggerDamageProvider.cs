@@ -1,6 +1,6 @@
 ﻿using Lefrut.Framework;
 
-public class PeriodicTriggerDamageProvider : MonoProvider
+public class PeriodicTriggerDamageProvider : IProvider
 {
     public PeriodicTriggerDamageComponent component;
 

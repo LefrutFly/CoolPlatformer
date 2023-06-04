@@ -1,6 +1,6 @@
 ﻿using Lefrut.Framework;
 
-public class PlayerJumpProvider : MonoProvider
+public class PlayerJumpProvider : IProvider
 {
     public PlayerJumpComponent component;
 

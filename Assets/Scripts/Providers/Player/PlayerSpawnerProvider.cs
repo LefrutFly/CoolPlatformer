@@ -1,6 +1,6 @@
 ﻿using Lefrut.Framework;
 
-public class PlayerSpawnerProvider : MonoProvider
+public class PlayerSpawnerProvider : IProvider
 {
     public PlayerSpawnerComponent component;
 

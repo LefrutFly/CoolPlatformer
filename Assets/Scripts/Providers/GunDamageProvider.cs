@@ -1,6 +1,6 @@
 ﻿using Lefrut.Framework;
 
-public class GunDamageProvider : MonoProvider
+public class GunDamageProvider : IProvider
 {
     public GunDamageComponent component;
 

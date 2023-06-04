@@ -1,7 +1,7 @@
 ﻿using Lefrut.Framework;
 using UnityEngine;
 
-public class PlayerAttackProvider : MonoProvider
+public class PlayerAttackProvider : IProvider
 {
     public override IData Data => component;
 

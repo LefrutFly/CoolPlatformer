@@ -1,6 +1,6 @@
 ﻿using Lefrut.Framework;
 
-public class ViewProvider : MonoProvider
+public class ViewProvider : IProvider
 {
     public ViewComponent component;
 

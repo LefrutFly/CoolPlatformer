@@ -1,6 +1,6 @@
 ﻿using Lefrut.Framework;
 
-public class AnimationDeathProvider : MonoProvider
+public class AnimationDeathProvider : IProvider
 {
     public AnimaionDeathComponent component;
 

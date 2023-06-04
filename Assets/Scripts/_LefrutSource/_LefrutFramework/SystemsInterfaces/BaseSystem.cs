@@ -6,12 +6,12 @@
 
         public bool IsActive = true;
 
-        public Property<MonoProvider> NeededProviders = new Property<MonoProvider>();
+        public Property<IProvider> NeededProviders = new Property<IProvider>();
 
-        public Property<MonoProvider> Providers = new Property<MonoProvider>();
+        public Property<IProvider> Providers = new Property<IProvider>();
 
 
-        public virtual void Initialize(Property<MonoProvider> providers, Facade facade)
+        public virtual void Initialize(Property<IProvider> providers, Facade facade)
         {
             Providers = providers;
             Facade = facade;

@@ -1,6 +1,6 @@
 ﻿using Lefrut.Framework;
 
-public class HealthBarProvider : MonoProvider
+public class HealthBarProvider : IProvider
 {
     public HealthBarComponent component;
 

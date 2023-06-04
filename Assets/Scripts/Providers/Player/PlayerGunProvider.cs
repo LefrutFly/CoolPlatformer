@@ -1,7 +1,7 @@
 ﻿using Lefrut.Framework;
 using UnityEngine;
 
-public class PlayerGunProvider : MonoProvider
+public class PlayerGunProvider : IProvider
 {
     public PlayerGunComponent component;
 

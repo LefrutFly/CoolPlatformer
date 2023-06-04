@@ -1,6 +1,6 @@
 ﻿using Lefrut.Framework;
 
-public class AttackProvider : MonoProvider
+public class AttackProvider : IProvider
 {
     public AttackComponent component;
 

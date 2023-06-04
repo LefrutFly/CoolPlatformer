@@ -1,6 +1,6 @@
 ﻿using Lefrut.Framework;
 
-public class PointCheckerProvider : MonoProvider
+public class PointCheckerProvider : IProvider
 {
     public PointCheckerComponent component;
 
