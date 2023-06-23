@@ -1,4 +1,5 @@
 ﻿using DG.Tweening;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,6 +8,9 @@ public class LevelMenu : MonoBehaviour
     [SerializeField] private Camera camera;
     [SerializeField] private Transform pointStartMenu;
     [SerializeField] private float durationToStartMenu;
+    [SerializeField] private TMP_Text errorText;
+    [SerializeField] private GameObject loadingScreen;
+    [SerializeField] private bool isOnline = true;
 
     public void BackToMainMenu()
     {
@@ -15,8 +19,38 @@ public class LevelMenu : MonoBehaviour
         camera.transform.DOMoveY(vector.y, durationToStartMenu);
     }
 
-    public void LoadLevel(string levelName)
+    public void LoadLevel(int levelIndex)
     {
-        SceneManager.LoadScene(levelName);
+        if (isOnline)
+        {
+            var unlockedLevel = DataBase.LoadedUserData.UnlockLevel;
+
+            if (levelIndex <= unlockedLevel)
+            {
+                loadingScreen.SetActive(true);
+                SceneManager.LoadScene("Level_" + levelIndex);
+            }
+            else
+            {
+                errorText.text = $"Level {levelIndex} unavailable";
+            }
+        }
+        else
+        {
+            if (levelIndex <= OfflineSaver.unlockedLevel)
+            {
+                loadingScreen.SetActive(true);
+                SceneManager.LoadScene("Level_" + levelIndex + "_Of");
+            }
+            else
+            {
+                errorText.text = $"Level {levelIndex} unavailable";
+            }
+        }
     }
+}
+
+public static class OfflineSaver
+{
+    public static int unlockedLevel = 1;
 }

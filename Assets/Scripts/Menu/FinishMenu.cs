@@ -8,6 +8,8 @@ public class FinishMenu : MonoBehaviour
     [SerializeField] private Button goToNextLevelButton;
     [SerializeField] private int currentLevel;
 
+    public bool isOnline;
+
     private void OnEnable()
     {
         goToNextLevelButton.onClick.AddListener(GoToNextLevel);
@@ -21,24 +23,41 @@ public class FinishMenu : MonoBehaviour
     private void GoToNextLevel()
     {
         var unlockLevel = currentLevel + 1;
-        var sceneName = "Level_" + unlockLevel;
-        var sceneCount = SceneManager.sceneCount;
+        var sceneNameOnline = "Level_" + unlockLevel;
+        var sceneNameOfline = "Level_" + unlockLevel + "_Of";
 
-        SaveToServer(unlockLevel);
-
-        for (int i = 0; i < sceneCount; i++)
+        if (isOnline)
         {
-            var scene = SceneManager.GetSceneAt(i);
-
-            if (scene.name == sceneName)
-            {
-                SceneManager.LoadScene(sceneName);
-                return;
-            }
+            SaveToServer(unlockLevel);
         }
-        Debug.LogError($"The '{sceneName}' scene doesn't exist.");
+        else
+        {
+            OfflineSaver.unlockedLevel = unlockLevel;
+        }
+
+        if (unlockLevel <= 6)
+        {
+            if (isOnline)
+            {
+                SceneManager.LoadScene(sceneNameOnline);
+            }
+            else
+            {
+                SceneManager.LoadScene(sceneNameOfline);
+            }
+            return;
+        }
+
+        Debug.LogError($"The '{sceneNameOnline}' scene doesn't exist.");
         Time.timeScale = 1;
-        SceneManager.LoadScene("MainMenu");
+        if (isOnline)
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
+        else
+        {
+            SceneManager.LoadScene("MainMenuOffline");
+        }
     }
 
     private void SaveToServer(int unlockLevel)
@@ -51,7 +70,7 @@ public class FinishMenu : MonoBehaviour
 
             DataBase.SendToDataBase(newData, separator);
         }
-        catch(Exception e)
+        catch (Exception e)
         {
             Debug.LogError(e);
         }

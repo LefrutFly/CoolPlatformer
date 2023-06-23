@@ -3,7 +3,9 @@ using Proyecto26;
 using System;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
@@ -24,6 +26,9 @@ public class LoginMenu : MonoBehaviour
     [SerializeField] private TMP_InputField signUpEmail;
     [SerializeField] private TMP_InputField signUpPassword;
 
+    [Header("Go Offline")]
+    [SerializeField] private Button goOfflineButton;
+
     [Space(32)]
     [SerializeField] private Button loginButton;
     [SerializeField] private Button registrButton;
@@ -34,11 +39,7 @@ public class LoginMenu : MonoBehaviour
 
     private void OnEnable()
     {
-        if (DataBase.isFirstOpen)
-        {
-            DataBase.isFirstOpen = false;
-        }
-        else
+        if (!DataBase.isFirstOpen)
         {
             gameObject.SetActive(false);
         }
@@ -47,6 +48,7 @@ public class LoginMenu : MonoBehaviour
         openSignInMenuButton.onClick.AddListener(OpenSignInMenu);
         loginButton.onClick.AddListener(SignIn);
         registrButton.onClick.AddListener(SignUp);
+        goOfflineButton.onClick.AddListener(GoOffline);
     }
 
     private void OnDisable()
@@ -55,6 +57,7 @@ public class LoginMenu : MonoBehaviour
         openSignInMenuButton.onClick.RemoveListener(OpenSignInMenu);
         loginButton.onClick.RemoveListener(SignIn);
         registrButton.onClick.RemoveListener(SignUp);
+        goOfflineButton.onClick.RemoveListener(GoOffline);
     }
 
     private void Update()
@@ -65,6 +68,18 @@ public class LoginMenu : MonoBehaviour
         }
     }
 
+    private void BackToStartMenu()
+    {
+        startMenu.SetActive(true);
+        signInMenu.SetActive(false);
+        signUpMenu.SetActive(false);
+        signInEmail.text = "";
+        signInPassword.text = "";
+        signUpLogin.text = "";
+        signUpEmail.text = "";
+        signUpPassword.text = "";
+        errorText.text = "";
+    }
 
     private void OpenSignUpMenu()
     {
@@ -82,19 +97,6 @@ public class LoginMenu : MonoBehaviour
         errorText.text = "";
     }
 
-    private void BackToStartMenu()
-    {
-        startMenu.SetActive(true);
-        signInMenu.SetActive(false);
-        signUpMenu.SetActive(false);
-        signInEmail.text = "";
-        signInPassword.text = "";
-        signUpLogin.text = "";
-        signUpEmail.text = "";
-        signUpPassword.text = "";
-        errorText.text = "";
-    }
-
     private void CloseMenu()
     {
         startMenu.SetActive(true);
@@ -109,10 +111,26 @@ public class LoginMenu : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    private void GoOffline()
+    {
+        SceneManager.LoadScene("MainMenuOffline");
+        DataBase.isFirstOpen = true;
+    }
+
     private void SignIn()
     {
         string email = signInEmail.text;
         string password = signInPassword.text;
+
+        bool IsEmailEmpty = string.IsNullOrEmpty(email) || string.IsNullOrWhiteSpace(email);
+        bool IsPasswordEmpty = string.IsNullOrEmpty(password) || string.IsNullOrWhiteSpace(password);
+
+        if (IsEmailEmpty || IsPasswordEmpty)
+        {
+            errorText.text = "Empty input fields";
+            errorText.color = Color.red;
+            return;
+        }
 
         SignIn(email, password);
     }
@@ -135,9 +153,6 @@ public class LoginMenu : MonoBehaviour
     {
         try
         {
-            errorText.text = "Account Initialised";
-            errorText.color = Color.green;
-
             var verifyPasswordResponse = JsonConvert.DeserializeObject<dynamic>(response.Text);
             string email = verifyPasswordResponse.email;
 
@@ -163,13 +178,18 @@ public class LoginMenu : MonoBehaviour
 
             foreach (KeyValuePair<string, UserData> kvp in dict)
             {
+                errorText.text = "Account Initialised";
+                errorText.color = Color.green;
                 var data = kvp.Value;
 
                 DataBase.LoadedUserData = data;
-
+                DataBase.isFirstOpen = false;
                 CloseMenu();
                 return;
             }
+
+            errorText.text = "Can't sign in";
+            errorText.color = Color.red;
         }
         catch
         {
@@ -229,16 +249,26 @@ public class LoginMenu : MonoBehaviour
     {
         try
         {
-            string login = signUpLogin.text;
-            string email = signUpEmail.text;
-            string password = signUpPassword.text;
+            if (response.StatusCode == 200)
+            {
+                string login = signUpLogin.text;
+                string email = signUpEmail.text;
+                string password = signUpPassword.text;
 
-            errorText.text = "Account created!";
-            errorText.color = Color.green;
+                errorText.text = "Account created!";
+                errorText.color = Color.green;
 
-            var userData = new UserData(login, email, password, 0);
+                var userData = new UserData(login, email, password, 1);
 
-            DataBase.SendToDataBase(userData, login);
+                DataBase.SendToDataBase(userData, login);
+
+                OpenSignInMenu();
+            }
+            else
+            {
+                errorText.text = "Account with you'r email have in system!";
+                errorText.color = Color.red;
+            }
         }
         catch (Exception ex)
         {

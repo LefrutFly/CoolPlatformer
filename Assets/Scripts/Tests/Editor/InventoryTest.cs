@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Networking;
 
 namespace Assets.Scripts.Tests
 {
@@ -32,7 +33,7 @@ namespace Assets.Scripts.Tests
             var ID = item.ID;
             item.Count = count;
             inventory.AddItem(null, item);
-            if(inventory.GetItemCount(ID) != count)
+            if (inventory.GetItemCount(ID) != count)
             {
                 FAILD++;
                 Debug.Log($"TRY ADD A {count} TEST_ITEMS!");
@@ -57,7 +58,7 @@ namespace Assets.Scripts.Tests
 
             if (was < taken)
             {
-                if(code == 0)
+                if (code == 0)
                 {
                     FAILD++;
                     Debug.Log($"TRY REMOVE {taken} TEST_ITEMS, WAS : {was}");
@@ -71,7 +72,7 @@ namespace Assets.Scripts.Tests
             }
             else
             {
-                if(code == 1)
+                if (code == 1)
                 {
                     FAILD++;
                     Debug.Log($"TRY REMOVE {taken} TEST_ITEMS, WAS : {was}");

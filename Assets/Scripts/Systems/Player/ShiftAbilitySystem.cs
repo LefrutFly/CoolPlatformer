@@ -55,7 +55,7 @@ public class ShiftAbilitySystem : BaseSystem, IUpdatableSystem
         }
         else
         {
-            MoveEntity(entity, nextPoint, duration, cooldown);
+            Move(entity, nextPoint, duration, cooldown);
         }
     }
 
@@ -81,7 +81,7 @@ public class ShiftAbilitySystem : BaseSystem, IUpdatableSystem
         return direction;
     }
 
-    private void MoveEntity(Facade entity, Vector3 nextPoint, float duration, float cooldown)
+    private void Move(Facade entity, Vector3 nextPoint, float duration, float cooldown)
     {
         if (isReady)
         {
